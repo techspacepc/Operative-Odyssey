@@ -12,7 +12,11 @@ public class OrganSnappingCollider : MonoBehaviour
             isNewCollider = true;
         }
 
-        SphereCollider snappingPoint = new GameObject("SnappingPoint", typeof(SphereCollider)).GetComponent<SphereCollider>();
+        SphereCollider snappingPoint = new GameObject(
+            "SnappingPoint",
+            typeof(SphereCollider),
+            typeof(Rigidbody),
+            typeof(OrganSnappingPhysics)).GetComponent<SphereCollider>();
 
         snappingPoint.radius = sphere.radius;
         snappingPoint.center = sphere.center;
