@@ -11181,7 +11181,6 @@ GameObject:
   - component: {fileID: 986458568}
   - component: {fileID: 986458567}
   - component: {fileID: 986458570}
-  - component: {fileID: 986458573}
   - component: {fileID: 986458572}
   m_Layer: 0
   m_Name: Sphere Interactable
@@ -11491,19 +11490,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62c454d3622152b46a487dfb87c939ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &986458573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 986458563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a942f307ff53ef54aafa9cc8835d1172, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  organ: 0
 --- !u!1001 &1004275881
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18040,7 +18026,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1694579572}
   - component: {fileID: 1694579574}
-  - component: {fileID: 1694579573}
+  - component: {fileID: 1694579576}
   - component: {fileID: 1694579575}
   m_Layer: 0
   m_Name: Socket Interactor
@@ -18064,7 +18050,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 519678235}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1694579573
+--- !u!135 &1694579574
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694579571}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1694579575
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -18073,7 +18080,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1694579571}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60523e0647cc6ab43acc73cb266a32a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 0be53d0cb0abb0545810b8be2b24b667, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1694579576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694579571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 233f3536bf08ba448b4b094114ebc490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
@@ -18086,7 +18105,7 @@ MonoBehaviour:
   m_KeepSelectedTargetValid: 1
   m_DisableVisualsWhenBlockedInGroup: 1
   m_StartingSelectedInteractable: {fileID: 986458567}
-  m_StartingTargetFilter: {fileID: 986458573}
+  m_StartingTargetFilter: {fileID: 0}
   m_HoverEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -18124,40 +18143,7 @@ MonoBehaviour:
   m_SocketScaleMode: 0
   m_FixedScale: {x: 1, y: 1, z: 1}
   m_TargetBoundsSize: {x: 1, y: 1, z: 1}
---- !u!135 &1694579574
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1694579571}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1694579575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1694579571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0be53d0cb0abb0545810b8be2b24b667, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  organ: 0
+  <Organ>k__BackingField: 0
 --- !u!1 &1702963519
 GameObject:
   m_ObjectHideFlags: 0
@@ -18929,7 +18915,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.1e-43, y: 1.57e-43, z: 1.11e-43, w: 1.58e-43}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 8e-45, z: 1.143e-41, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0

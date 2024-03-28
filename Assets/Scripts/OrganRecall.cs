@@ -1,7 +1,11 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class ResetInteractable : MonoBehaviour
+/// <summary>
+/// This should be merged into the <see cref="XROrganSocketInteractor"/> class. 
+/// But I will save this rework for later, other things have priority right now.
+/// </summary>
+public class OrganRecall : MonoBehaviour
 {
     private XRSocketInteractor socket;
 
