@@ -20,8 +20,6 @@ public class ResetButton : MonoBehaviour
 
     public void OnSelectExit(SelectExitEventArgs _)
     {
-        Debug.Log(nameof(OnSelectExit));
-
         material.color = default_color;
     }
 

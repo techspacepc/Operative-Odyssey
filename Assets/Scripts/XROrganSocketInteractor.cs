@@ -2,10 +2,6 @@ using Organs;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-/// <summary>
-/// I am pretty sure I way overcomplicated this, I think I can literally just get the startingSelectedInteractable instance and set the functions to true if it's that instance else false. 
-/// I am going to cry.
-/// </summary>
 public class XROrganSocketInteractor : XRSocketInteractor, IOrgan
 {
     [field: SerializeField] public OrganType Organ { get; set; }
