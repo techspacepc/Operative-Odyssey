@@ -23,21 +23,23 @@ public class SocketHighlight : MonoBehaviour
 
     private void OnGrabbed(SelectEnterEventArgs args)
     {
-        print(args);
-        print(1);
-        if (organHighlight != null)
+        if (args.interactorObject is XRRayInteractor)
         {
-            organHighlight.SetActive(true);
+            if (organHighlight != null)
+            {
+                organHighlight.SetActive(true);
+            }
         }
     }
 
     private void OnReleased(SelectExitEventArgs args)
     {
-        print(args);
-        print(2);
-        if (organHighlight != null)
+        if (args.interactorObject is XRRayInteractor)
         {
-            organHighlight.SetActive(false);
+            if (organHighlight != null)
+            {
+                organHighlight.SetActive(false);
+            }
         }
     }
 }
