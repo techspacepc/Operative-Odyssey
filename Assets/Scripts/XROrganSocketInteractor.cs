@@ -1,24 +1,27 @@
-using Organs;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class XROrganSocketInteractor : XRSocketInteractor, IOrgan
+namespace Organs
 {
-    [field: SerializeField] public OrganType Organ { get; set; }
-
-    protected override void Awake()
+    [RequireComponent(typeof(OrganRecall))]
+    public class XROrganSocketInteractor : XRSocketInteractor, IOrgan
     {
-        base.Awake();
+        [field: SerializeField] public OrganType Organ { get; set; }
 
-        startingSelectedInteractable.gameObject.AddComponent<OrganIdentifier>().Organ = Organ;
+        protected override void Awake()
+        {
+            base.Awake();
+
+            startingSelectedInteractable.gameObject.AddComponent<OrganIdentifier>().Organ = Organ;
+        }
+
+        private bool MatchOrgan(IXRInteractable interactable)
+            => interactable.transform.TryGetComponent(out IOrgan I) && I.Organ == Organ;
+
+        public override bool CanHover(IXRHoverInteractable interactable)
+            => MatchOrgan(interactable) && base.CanHover(interactable);
+
+        public override bool CanSelect(IXRSelectInteractable interactable)
+            => MatchOrgan(interactable) && base.CanSelect(interactable);
     }
-
-    private bool MatchOrgan(IXRInteractable interactable)
-        => interactable.transform.TryGetComponent(out IOrgan I) && I.Organ == Organ;
-
-    public override bool CanHover(IXRHoverInteractable interactable)
-        => MatchOrgan(interactable) && base.CanHover(interactable);
-
-    public override bool CanSelect(IXRSelectInteractable interactable)
-        => MatchOrgan(interactable) && base.CanSelect(interactable);
 }
