@@ -3,7 +3,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class SocketHighlight : MonoBehaviour
 {
-    public GameObject organHighlight;
+    [SerializeField] public GameObject organHighlight;
     private XRGrabInteractable interactable;
 
     private void Start()
