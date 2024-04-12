@@ -6,7 +6,6 @@ public class SocketHighlight : MonoBehaviour
 {
     public static event Action<Material> OnOrganGrabbed;
 
-    [SerializeField] public GameObject organHighlight;
     private XRGrabInteractable interactable;
 
     private Material material;
@@ -29,6 +28,6 @@ public class SocketHighlight : MonoBehaviour
 
     private void OnGrabbed(SelectEnterEventArgs _)
     {
-        OnOrganGrabbed(material);
+        OnOrganGrabbed?.Invoke(material);
     }
 }
