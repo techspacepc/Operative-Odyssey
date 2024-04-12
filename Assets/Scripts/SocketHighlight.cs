@@ -1,45 +1,34 @@
+using System;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class SocketHighlight : MonoBehaviour
 {
+    public static event Action<Material> OnOrganGrabbed;
+
     [SerializeField] public GameObject organHighlight;
     private XRGrabInteractable interactable;
 
-    private void Start()
+    private Material material;
+
+    private void Awake()
     {
         interactable = GetComponent<XRGrabInteractable>();
-        if (organHighlight != null)
-        {
-            organHighlight.SetActive(false);
-        }
-
-        if (interactable != null)
-        {
-            interactable.selectEntered.AddListener(OnGrabbed);
-            interactable.selectExited.AddListener(OnReleased);
-        }
+        material = GetComponent<Renderer>().material;
     }
 
-    private void OnGrabbed(SelectEnterEventArgs args)
+    private void OnEnable()
     {
-        if (args.interactorObject is XRRayInteractor)
-        {
-            if (organHighlight != null)
-            {
-                organHighlight.SetActive(true);
-            }
-        }
+        interactable.selectEntered.AddListener(OnGrabbed);
     }
 
-    private void OnReleased(SelectExitEventArgs args)
+    private void OnDisable()
     {
-        if (args.interactorObject is XRRayInteractor)
-        {
-            if (organHighlight != null)
-            {
-                organHighlight.SetActive(false);
-            }
-        }
+        interactable.selectEntered.RemoveListener(OnGrabbed);
+    }
+
+    private void OnGrabbed(SelectEnterEventArgs _)
+    {
+        OnOrganGrabbed(material);
     }
 }
