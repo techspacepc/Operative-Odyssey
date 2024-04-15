@@ -610,8 +610,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 2075101518}
   bubbleRenderer: {fileID: 249080903}
-  bubbleMaterial: {fileID: 2100000, guid: 8f9b88445fb882449a6ce3b86b5ab787, type: 2}
-  hoverMaterial: {fileID: 2100000, guid: 8fce0294b0a9b1e4fb202bc858bc79ec, type: 2}
+  bubbleMaterial: {fileID: 2100000, guid: 6b098c8334f92c54ca966d814c7d3069, type: 2}
+  hoverMaterial: {fileID: 2100000, guid: abc3e02789f02864a89f5f784789663c, type: 2}
 --- !u!114 &249080900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -794,7 +794,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8f9b88445fb882449a6ce3b86b5ab787, type: 2}
+  - {fileID: 2100000, guid: 6b098c8334f92c54ca966d814c7d3069, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1493,7 +1493,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 893244593}
-  - component: {fileID: 893244594}
   m_Layer: 0
   m_Name: Bubbles
   m_TagString: Untagged
@@ -1520,19 +1519,6 @@ Transform:
   - {fileID: 249080898}
   m_Father: {fileID: 60211229}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &893244594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 893244592}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27ca08d2f55ee6d4aa1fe813f3912e4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectToDisable: {fileID: 893244592}
 --- !u!1 &969408710
 GameObject:
   m_ObjectHideFlags: 0
@@ -1575,7 +1561,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8f9b88445fb882449a6ce3b86b5ab787, type: 2}
+  - {fileID: 2100000, guid: 6b098c8334f92c54ca966d814c7d3069, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1611,8 +1597,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 396235037}
   bubbleRenderer: {fileID: 969408711}
-  bubbleMaterial: {fileID: 2100000, guid: 8f9b88445fb882449a6ce3b86b5ab787, type: 2}
-  hoverMaterial: {fileID: 2100000, guid: 8fce0294b0a9b1e4fb202bc858bc79ec, type: 2}
+  bubbleMaterial: {fileID: 2100000, guid: 6b098c8334f92c54ca966d814c7d3069, type: 2}
+  hoverMaterial: {fileID: 2100000, guid: abc3e02789f02864a89f5f784789663c, type: 2}
 --- !u!114 &969408713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2269,8 +2255,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 574285364}
   bubbleRenderer: {fileID: 1170935197}
-  bubbleMaterial: {fileID: 2100000, guid: 8f9b88445fb882449a6ce3b86b5ab787, type: 2}
-  hoverMaterial: {fileID: 2100000, guid: 8fce0294b0a9b1e4fb202bc858bc79ec, type: 2}
+  bubbleMaterial: {fileID: 2100000, guid: 6b098c8334f92c54ca966d814c7d3069, type: 2}
+  hoverMaterial: {fileID: 2100000, guid: abc3e02789f02864a89f5f784789663c, type: 2}
 --- !u!114 &1170935194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2453,7 +2439,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8f9b88445fb882449a6ce3b86b5ab787, type: 2}
+  - {fileID: 2100000, guid: 6b098c8334f92c54ca966d814c7d3069, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2522,7 +2508,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1daea5f0be270d64bad5f1ea19c1b312, type: 2}
+  - {fileID: 2100000, guid: 5adce942e9c63154c8adefb859d24f37, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2944,8 +2930,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 276565849}
   bubbleRenderer: {fileID: 1535972281}
-  bubbleMaterial: {fileID: 2100000, guid: 8f9b88445fb882449a6ce3b86b5ab787, type: 2}
-  hoverMaterial: {fileID: 2100000, guid: 8fce0294b0a9b1e4fb202bc858bc79ec, type: 2}
+  bubbleMaterial: {fileID: 2100000, guid: 6b098c8334f92c54ca966d814c7d3069, type: 2}
+  hoverMaterial: {fileID: 2100000, guid: abc3e02789f02864a89f5f784789663c, type: 2}
 --- !u!114 &1535972278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3128,7 +3114,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8f9b88445fb882449a6ce3b86b5ab787, type: 2}
+  - {fileID: 2100000, guid: 6b098c8334f92c54ca966d814c7d3069, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
