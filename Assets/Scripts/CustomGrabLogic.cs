@@ -7,22 +7,9 @@ public class CustomGrabLogic : MonoBehaviour
     [SerializeField] private Transform primaryAttachTransform;
     [SerializeField] private Transform secondaryAttachTransform;
 
-    void Start()
-    {
-        // Ensure XRGrabInteractable component is assigned
-        if (grabInteractable == null)
-        {
-            grabInteractable = GetComponent<XRGrabInteractable>();
-        }
-    }
-
     public void SetAttachTransformLeftHand()
-    {
-        grabInteractable.attachTransform = primaryAttachTransform;
-    }
+        => grabInteractable.attachTransform = primaryAttachTransform;
 
     public void SetAttachTransformRightHand()
-    {
-        grabInteractable.attachTransform = secondaryAttachTransform;
-    }
+        => grabInteractable.attachTransform = secondaryAttachTransform;
 }

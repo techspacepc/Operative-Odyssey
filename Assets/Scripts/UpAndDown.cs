@@ -2,15 +2,17 @@ using UnityEngine;
 
 public class UpAndDown : MonoBehaviour
 {
-    public float movementSpeed = 2f; // Adjust this value to change the speed of movement
-    public float maxHeight = 5f; // Adjust this value to change the maximum height
-    public float minHeight = 0f; // Adjust this value to change the minimum height
+    private const float movementSpeed = 0.005f;
+
+    // These are very magical numbers in the inspector, I cannot figure out any rhyme or reason behind it, it's also not relative?
+    // TLDR; how did you come to these numbers and why? How would you configure these numbers for new future bubbles?
+    [SerializeField] private float maxHeight;
+    [SerializeField] private float minHeight;
 
     private bool movingUp = true;
 
-    void Update()
+    private void Update()
     {
-        // Move the object up or down
         if (movingUp)
         {
             transform.Translate(movementSpeed * Time.deltaTime * Vector3.up);
