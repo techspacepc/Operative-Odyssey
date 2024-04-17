@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "OrganInfoData", menuName = "Resources/OrganInfoData", order = 1)]
+[CreateAssetMenu(fileName = "OrganInfoData", menuName = "Custom/OrganInfoData", order = 1)]
 public class OrganInfoData : ScriptableObject
 {
     [System.Serializable]
@@ -10,7 +9,7 @@ public class OrganInfoData : ScriptableObject
     {
         public string PageTitle;
         public string PageInfo;
-        public Image PageImage;
+        public Sprite PageImage;
     }
 
     public string OrganName;
