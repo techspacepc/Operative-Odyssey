@@ -8,7 +8,7 @@ namespace Organs
     /// <summary>
     /// This script will only be implemented by <code>[RequireComponent(typeof(OrganRecall))]</code> in the <see cref="XROrganSocketInteractor"/> class.
     /// </summary>
-    public class OrganRecall : MonoBehaviour
+    public class OrganRecaller : MonoBehaviour
     {
         private readonly XRSocketInteractor socket;
 
@@ -34,7 +34,7 @@ namespace Organs
                     return;
 
             throw new InvalidOperationException($"No {nameof(MonoBehaviour)} on this {nameof(GameObject)} implements the {nameof(IOrgan)} interface." +
-                $" This script ({nameof(OrganRecall)}) must only be on {nameof(GameObject)}s that implement the {nameof(IOrgan)} interface");
+                $" This script ({nameof(OrganRecaller)}) must only be on {nameof(GameObject)}s that implement the {nameof(IOrgan)} interface");
         }
 
         private void OnTriggerExit(Collider other)

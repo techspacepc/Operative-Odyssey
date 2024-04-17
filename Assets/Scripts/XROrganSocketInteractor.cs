@@ -3,7 +3,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 namespace Organs
 {
-    [RequireComponent(typeof(OrganRecall))]
+    [RequireComponent(typeof(OrganRecaller))]
     public class XROrganSocketInteractor : XRSocketInteractor, IOrgan
     {
         [field: SerializeField] public OrganType Organ { get; set; }
