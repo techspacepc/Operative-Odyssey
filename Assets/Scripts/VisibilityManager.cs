@@ -71,11 +71,16 @@ public class VisibilityManager : MonoBehaviour
 
     private void OnObjectRemoved(SelectExitEventArgs args)
     {
+        if (socket.interactablesSelected.Count > 0)
+        {
+            return;
+        }
         Torso.SetActive(true);
         knifeGrabInteractable.enabled = false;
 
         StartCoroutine(FadeInKnife());
         StartCoroutine(FadeInTorso());
+
     }
 
     private System.Collections.IEnumerator FadeOutTorso()
