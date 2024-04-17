@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -9,7 +10,7 @@ namespace Organs
     /// </summary>
     public class OrganRecall : MonoBehaviour
     {
-        private XRSocketInteractor socket;
+        private readonly XRSocketInteractor socket;
 
         private Coroutine recallCountdown;
         private readonly WaitForSeconds countdown = new(3);
@@ -24,7 +25,17 @@ namespace Organs
             Recall();
         }
 
-        private void Awake() => socket = GetComponent<XRSocketInteractor>();
+        private void Awake()
+        {
+            MonoBehaviour[] scripts = GetComponents<MonoBehaviour>();
+
+            foreach (MonoBehaviour script in scripts)
+                if (script is IOrgan organ)
+                    return;
+
+            throw new InvalidOperationException($"No {nameof(MonoBehaviour)} on this {nameof(GameObject)} implements the {nameof(IOrgan)} interface." +
+                $" This script ({nameof(OrganRecall)}) must only be on {nameof(GameObject)}s that implement the {nameof(IOrgan)} interface");
+        }
 
         private void OnTriggerExit(Collider other)
         {
