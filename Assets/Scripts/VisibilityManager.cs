@@ -6,6 +6,10 @@ public class VisibilityManager : MonoBehaviour
     [SerializeField] public GameObject Tray;
     [SerializeField] public GameObject Torso;
     [SerializeField] public GameObject Knife;
+    [SerializeField] private Material transparantMaterial;
+
+    private new Renderer renderer;
+    private Material opaqueMaterial;
 
     private XRSocketInteractor socket;
     private XRGrabInteractable knifeGrabInteractable;
@@ -20,6 +24,9 @@ public class VisibilityManager : MonoBehaviour
         socket = Tray.GetComponent<XRSocketInteractor>();
         socket.selectEntered.AddListener(OnObjectInserted);
         socket.selectExited.AddListener(OnObjectRemoved);
+
+        renderer = GetComponent<Renderer>();
+        opaqueMaterial = renderer.material;
     }
 
     private void OnDisable()
@@ -35,6 +42,7 @@ public class VisibilityManager : MonoBehaviour
 
         knifeRenderer = Knife.GetComponent<Renderer>();
         knifeMaterial = knifeRenderer.material;
+        transparantMaterial = knifeMaterial;
 
         Color knifeColor = knifeMaterial.color;
         knifeColor.a = 0.0f;
@@ -57,6 +65,16 @@ public class VisibilityManager : MonoBehaviour
                 isKnifeFading = false;
             }
         }
+    }
+
+    private void ChangeToTransparant()
+    {
+        renderer.material = transparantMaterial;
+    }
+
+    private void ChangeToOpaque()
+    {
+        renderer.material = opaqueMaterial;
     }
 
     private void OnObjectInserted(SelectEnterEventArgs args)
