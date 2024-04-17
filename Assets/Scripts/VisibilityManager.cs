@@ -3,9 +3,9 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class VisibilityManager : MonoBehaviour
 {
-    public GameObject Tray;
-    public GameObject Torso;
-    public GameObject Knife;
+    [SerializeField] public GameObject Tray;
+    [SerializeField] public GameObject Torso;
+    [SerializeField] public GameObject Knife;
 
     private XRSocketInteractor socket;
 
