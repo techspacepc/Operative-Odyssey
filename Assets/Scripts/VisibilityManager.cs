@@ -61,8 +61,11 @@ public class VisibilityManager : MonoBehaviour
 
     private void OnObjectInserted(SelectEnterEventArgs args)
     {
+        if (socket.interactablesSelected.Count == 0)
+        {
+            return;
+        }
         StartCoroutine(FadeOutTorso());
-
         knifeGrabInteractable.enabled = true;
 
         isKnifeFading = true;
