@@ -99,7 +99,7 @@ public class VisibilityManager : MonoBehaviour
         Torso.SetActive(true);
         knifeGrabInteractable.enabled = false;
 
-        StartCoroutine(FadeInKnife());
+        StartCoroutine(FadeOutKnife());
         StartCoroutine(FadeInTorso());
 
     }
@@ -150,7 +150,22 @@ public class VisibilityManager : MonoBehaviour
         while (timer < knifeFadeDuration)
         {
             timer += Time.deltaTime;
-            float alpha = Mathf.Lerp(0.0f, 1.0f, timer / knifeFadeDuration);
+            float alpha = Mathf.Lerp(0.5f, 1.0f, timer / knifeFadeDuration);
+
+            Color knifeColor = knifeMaterial.color;
+            knifeColor.a = alpha;
+            knifeMaterial.color = knifeColor;
+
+            yield return null;
+        }
+    }
+    private System.Collections.IEnumerator FadeOutKnife()
+    {
+        float timer = 0.0f;
+        while (timer < knifeFadeDuration)
+        {
+            timer += Time.deltaTime;
+            float alpha = Mathf.Lerp(1f, 0.5f, timer / knifeFadeDuration);
 
             Color knifeColor = knifeMaterial.color;
             knifeColor.a = alpha;
