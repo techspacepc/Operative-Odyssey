@@ -44,7 +44,7 @@ public class VisibilityManager : MonoBehaviour
         knifeMaterial = knifeRenderer.material;
 
         Color knifeColor = knifeMaterial.color;
-        knifeColor.a = 0.0f;
+        knifeColor.a = 0.5f;
         knifeMaterial.color = knifeColor;
     }
 
@@ -52,7 +52,7 @@ public class VisibilityManager : MonoBehaviour
     {
         if (isKnifeFading)
         {
-            float alpha = Mathf.Lerp(0.0f, 1.0f, knifeFadeTimer / knifeFadeDuration);
+            float alpha = Mathf.Lerp(0.5f, 1.0f, knifeFadeTimer / knifeFadeDuration);
             Color knifeColor = knifeMaterial.color;
             knifeColor.a = alpha;
             knifeMaterial.color = knifeColor;
