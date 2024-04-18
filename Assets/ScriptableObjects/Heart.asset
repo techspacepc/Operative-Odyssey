@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2a48d6f14733fc4cb4fa210203d6b37, type: 3}
+  m_Name: Heart
+  m_EditorClassIdentifier: 
+  OrganName: 'The Heart:'
+  pages:
+  - PageTitle: Cardiac Cycle 1
+    PageInfo: "On average, an adult\u2019s heart muscle contracts seventy times a
+      minute. That is what we call \u2018a heart rate of 70\u2019. The heartbeat
+      can be heard because closing the valves creates a sound. The way the heart
+      works is made up of three phases (see figure 6):"
+    PageImage: {fileID: 21300000, guid: 76138ea8eb0bace49b8ca08926989b47, type: 3}
+  - PageTitle: Cardiac Cycle 2
+    PageInfo: 1 The heartbeat starts with contraction of the atria, which filled
+      with blood just before. Both atria contract at the same time. This makes blood
+      flow into the ventricles (see figure 6.1). The ventricles are relaxed.
+    PageImage: {fileID: 21300000, guid: 76138ea8eb0bace49b8ca08926989b47, type: 3}
+  - PageTitle: Cardiac Cycle 3
+    PageInfo: 2 Once the ventricles are filled with blood, they contract (see figure
+      6.2). The heart valves close and prevent the blood from flowing back into the
+      atria. The pressure in the ventricles increases. Once the pressure in the ventricles
+      is higher than the pressure in the aorta and the pulmonary artery, the semilunar
+      valves are pushed open. Blood is pumped simultaneously into the aorta and the
+      pulmonary artery. During the contraction of the ventricles, the atria are relaxed.
+    PageImage: {fileID: 21300000, guid: 76138ea8eb0bace49b8ca08926989b47, type: 3}
+  - PageTitle: Cardiac Cycle 4
+    PageInfo: "3 After this, there is the cardiac pause, when both the atria and
+      the ventricles are relaxed. The blood flows from the vena cava and pulmonary
+      veins into the atria, and to some extent into the ventricles too (see figure
+      6.3). The semilunar valves are closed. This keeps the blood from the pulmonary
+      artery and aorta from flowing back into the ventricles. Then it\u2019s phase
+      1 again."
+    PageImage: {fileID: 21300000, guid: 76138ea8eb0bace49b8ca08926989b47, type: 3}
