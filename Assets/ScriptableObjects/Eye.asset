@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2a48d6f14733fc4cb4fa210203d6b37, type: 3}
+  m_Name: Eye
+  m_EditorClassIdentifier: 
+  OrganName: 'The Eye:'
+  pages:
+  - PageTitle: Eye Structure
+    PageInfo: 'Figure 2 shows the parts around an eye and outside it. The eyebrows
+      make sure that sweat and other liquids do not get into your eyes. The eyelashes
+      protect the eyes against dirt and bright light. The white of the eye is called
+      the sclera. The eye muscles are attached to the sclera (see figure 3). The
+      eye muscles can turn the eyes in any desired direction. The coloured part of
+      the eye is called the iris. The iris has an opening called the pupil. The pupil
+      lets light into the eye. The iris and the pupil are covered by the transparent
+      cornea. '
+    PageImage: {fileID: 21300000, guid: 20c29d661603ecc4686051f88f5b5d5d, type: 3}
+  - PageTitle: Pupillary Reflex
+    PageInfo: Light enters your eye through the pupil. The pupil gets larger and
+      smaller depending on the amount of light. This is referred to as the pupillary
+      reflex. The pupillary reflex regulates the amount of light that falls onto
+      the retina. When there is a lot of light, the pupil gets smaller (see figure
+      5.1). Less light can then enter your eye. When the light is dim, the pupil
+      gets bigger (see figure 5.2). A large pupil lets a lot of light through. This
+      lets you see even when it is almost dark.
+    PageImage: {fileID: 21300000, guid: 34c5322434be3c54685c9df4de53d0cb, type: 3}
