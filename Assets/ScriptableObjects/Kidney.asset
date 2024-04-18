@@ -12,11 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2a48d6f14733fc4cb4fa210203d6b37, type: 3}
   m_Name: Kidney
   m_EditorClassIdentifier: 
-  OrganName: Kidney
+  OrganName: 'The Kidney:'
   pages:
-  - PageTitle: Aorta
-    PageInfo: 'Aorta pumps blood through all the body''s organs '
-    PageImage: {fileID: 21300000, guid: 63480edf83f2b7848b1abd06610d2f2e, type: 3}
-  - PageTitle: 
-    PageInfo: 
-    PageImage: {fileID: 0}
+  - PageTitle: Adrenal Glands
+    PageInfo: "The adrenal glands are like caps on top of the kidneys (see figure
+      4). When you are furious or scared of something, the adrenal glands release
+      the hormone adrenaline into the blood. Adrenaline makes the liver convert glycogen
+      into glucose. As a result, the blood glucose level rises. Adrenaline also makes
+      your heart beat more rapidly and makes you breathe faster. This is how adrenaline
+      gets your body ready to act quickly in urgent situations. Adrenaline is therefore
+      also known as the \u2018fight-or-flight hormone\u2019. Adrenaline is the only
+      hormone with a fast, short-term effect. "
+    PageImage: {fileID: 21300000, guid: 6b0b7c42ca46ecc4bad342c06471eece, type: 3}
+  - PageTitle: Urinary Tract
+    PageInfo: Urine is collected in the renal pelvises, The urine is then sent to
+      the bladder via the ureters (see figure 3). Urine is stored temporarily in
+      the bladder so that you do not have to urinate all the time. Every now and
+      then, urine is disposed of from the bladder through the urethra.
+    PageImage: {fileID: 21300000, guid: b3c95c38c6e394149ad8b4de8aa02470, type: 3}
