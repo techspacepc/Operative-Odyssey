@@ -44,11 +44,7 @@ public class VisibilityManager : MonoBehaviour
     private void Start()
     {
         scalpelGrabInteractable = scalpel.GetComponent<XRGrabInteractable>();
-        scalpelGrabInteractable.enabled = false;
-
-        Renderer scalpelRenderer;
-        scalpelRenderer = scalpel.GetComponent<Renderer>();
-        scalpelMaterial = scalpelRenderer.material;
+        scalpelMaterial = scalpel.GetComponent<Renderer>().material;
 
         Color scalpelColor = scalpelMaterial.color;
         scalpelColor.a = scalpelAlpha;
