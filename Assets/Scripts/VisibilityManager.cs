@@ -1,31 +1,34 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class VisibilityManager : MonoBehaviour
 {
-    [SerializeField] public GameObject Tray;
-    [SerializeField] public GameObject Torso;
-    [SerializeField] public GameObject Knife;
+    [SerializeField] private GameObject tray;
+    [SerializeField] private GameObject torso;
+    [SerializeField] private GameObject scalpel;
     [SerializeField] private Material transparantMaterial;
 
     private new Renderer renderer;
+    private Renderer torsoRenderer;
     private Material opaqueMaterial;
 
     private XRSocketInteractor socket;
-    private XRGrabInteractable knifeGrabInteractable;
-    private Renderer knifeRenderer;
-    private Material knifeMaterial;
-    private bool isKnifeFading = false;
-    private float knifeFadeDuration = 1.0f;
-    private float knifeFadeTimer = 0.0f;
+    private XRGrabInteractable scalpelGrabInteractable;
+    private Material scalpelMaterial;
+    private bool isScalpelFading = false;
+    private const float scalpelFadeDuration = 1.0f;
+    private const float scalpelAlpha = 0.25f;
+    private float scalpelFadeTimer = 0.0f;
 
     private void Awake()
     {
-        socket = Tray.GetComponent<XRSocketInteractor>();
+        socket = tray.GetComponent<XRSocketInteractor>();
         socket.selectEntered.AddListener(OnObjectInserted);
         socket.selectExited.AddListener(OnObjectRemoved);
 
-        renderer = Torso.GetComponent<Renderer>();
+        renderer = torso.GetComponent<Renderer>();
+        torsoRenderer = torso.GetComponent<Renderer>();
         opaqueMaterial = renderer.material;
     }
 
@@ -37,31 +40,32 @@ public class VisibilityManager : MonoBehaviour
 
     private void Start()
     {
-        knifeGrabInteractable = Knife.GetComponent<XRGrabInteractable>();
-        knifeGrabInteractable.enabled = false;
+        scalpelGrabInteractable = scalpel.GetComponent<XRGrabInteractable>();
+        scalpelGrabInteractable.enabled = false;
 
-        knifeRenderer = Knife.GetComponent<Renderer>();
-        knifeMaterial = knifeRenderer.material;
+        Renderer scalpelRenderer;
+        scalpelRenderer = scalpel.GetComponent<Renderer>();
+        scalpelMaterial = scalpelRenderer.material;
 
-        Color knifeColor = knifeMaterial.color;
-        knifeColor.a = 0.5f;
-        knifeMaterial.color = knifeColor;
+        Color scalpelColor = scalpelMaterial.color;
+        scalpelColor.a = scalpelAlpha;
+        scalpelMaterial.color = scalpelColor;
     }
 
     private void Update()
     {
-        if (isKnifeFading)
+        if (isScalpelFading)
         {
-            float alpha = Mathf.Lerp(0.5f, 1.0f, knifeFadeTimer / knifeFadeDuration);
-            Color knifeColor = knifeMaterial.color;
-            knifeColor.a = alpha;
-            knifeMaterial.color = knifeColor;
+            float alpha = Mathf.Lerp(scalpelAlpha, 1.0f, scalpelFadeTimer / scalpelFadeDuration);
+            Color scalpelColor = scalpelMaterial.color;
+            scalpelColor.a = alpha;
+            scalpelMaterial.color = scalpelColor;
 
-            knifeFadeTimer += Time.deltaTime;
+            scalpelFadeTimer += Time.deltaTime;
 
-            if (knifeFadeTimer >= knifeFadeDuration)
+            if (scalpelFadeTimer >= scalpelFadeDuration)
             {
-                isKnifeFading = false;
+                isScalpelFading = false;
             }
         }
     }
@@ -83,10 +87,10 @@ public class VisibilityManager : MonoBehaviour
             return;
         }
         StartCoroutine(FadeOutTorso());
-        knifeGrabInteractable.enabled = true;
+        scalpelGrabInteractable.enabled = true;
 
-        isKnifeFading = true;
-        knifeFadeTimer = 0.0f;
+        isScalpelFading = true;
+        scalpelFadeTimer = 0.0f;
     }
 
     private void OnObjectRemoved(SelectExitEventArgs args)
@@ -95,84 +99,69 @@ public class VisibilityManager : MonoBehaviour
         {
             return;
         }
-        Torso.SetActive(true);
-        knifeGrabInteractable.enabled = false;
+        torso.SetActive(true);
+        scalpelGrabInteractable.enabled = false;
 
         StartCoroutine(FadeOutKnife());
         StartCoroutine(FadeInTorso());
 
     }
 
-    private System.Collections.IEnumerator FadeOutTorso()
+    private IEnumerator FadeOutTorso()
     {
         ChangeToTransparant();
-        Color torsoColor = Torso.GetComponent<Renderer>().material.color;
+        Color torsoColor = torsoRenderer.material.color;
         torsoColor.a = 1.0f;
-        Torso.GetComponent<Renderer>().material.color = torsoColor;
+        torsoRenderer.material.color = torsoColor;
 
         float timer = 0.0f;
-        while (timer < knifeFadeDuration)
+        while (timer < scalpelFadeDuration)
         {
             timer += Time.deltaTime;
-            float alpha = Mathf.Lerp(1.0f, 0.0f, timer / knifeFadeDuration);
+            float alpha = Mathf.Lerp(1.0f, 0.0f, timer / scalpelFadeDuration);
 
             torsoColor.a = alpha;
-            Torso.GetComponent<Renderer>().material.color = torsoColor;
+            torsoRenderer.material.color = torsoColor;
 
             yield return null;
         }
 
         ChangeToOpaque();
-        Torso.SetActive(false);
+        torso.SetActive(false);
     }
 
-    private System.Collections.IEnumerator FadeInTorso()
+    private IEnumerator FadeInTorso()
     {
         ChangeToTransparant();
-        Color torsoColor = Torso.GetComponent<Renderer>().material.color;
+        Color torsoColor = torsoRenderer.material.color;
         torsoColor.a = 0.0f;
-        Torso.GetComponent<Renderer>().material.color = torsoColor;
+        torsoRenderer.material.color = torsoColor;
 
         float timer = 0.0f;
-        while (timer < knifeFadeDuration)
+        while (timer < scalpelFadeDuration)
         {
             timer += Time.deltaTime;
-            float alpha = Mathf.Lerp(0.0f, 1.0f, timer / knifeFadeDuration);
+            float alpha = Mathf.Lerp(0.0f, 1.0f, timer / scalpelFadeDuration);
 
             torsoColor.a = alpha;
-            Torso.GetComponent<Renderer>().material.color = torsoColor;
+            torsoRenderer.material.color = torsoColor;
 
             yield return null;
         }
         ChangeToOpaque();
     }
 
-    private System.Collections.IEnumerator FadeInKnife()
+    private IEnumerator FadeOutKnife()
     {
         float timer = 0.0f;
-        while (timer < knifeFadeDuration)
+        while (timer < scalpelFadeDuration)
         {
             timer += Time.deltaTime;
-            float alpha = Mathf.Lerp(0.5f, 1.0f, timer / knifeFadeDuration);
+            float alpha = Mathf.Lerp(1f, scalpelAlpha, timer / scalpelFadeDuration);
 
-            Color knifeColor = knifeMaterial.color;
-            knifeColor.a = alpha;
-            knifeMaterial.color = knifeColor;
-
-            yield return null;
-        }
-    }
-    private System.Collections.IEnumerator FadeOutKnife()
-    {
-        float timer = 0.0f;
-        while (timer < knifeFadeDuration)
-        {
-            timer += Time.deltaTime;
-            float alpha = Mathf.Lerp(1f, 0.5f, timer / knifeFadeDuration);
-
-            Color knifeColor = knifeMaterial.color;
-            knifeColor.a = alpha;
-            knifeMaterial.color = knifeColor;
+            Color scalpelColor = scalpelMaterial.color;
+            scalpelColor.a = alpha;
+            scalpelMaterial.color = scalpelColor;
 
             yield return null;
         }
