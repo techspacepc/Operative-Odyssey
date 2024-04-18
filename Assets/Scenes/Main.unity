@@ -8820,7 +8820,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ShowInteractableHoverMeshes: 1
-  m_InteractableHoverMeshMaterial: {fileID: 2100000, guid: f7f13924fb0108341b3f02000a7daf82, type: 2}
+  m_InteractableHoverMeshMaterial: {fileID: 0}
   m_InteractableCantHoverMeshMaterial: {fileID: 0}
   m_SocketActive: 1
   m_InteractableHoverScale: 1
@@ -8849,8 +8849,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.710027, y: 0.06266935, z: 0.52312696}
-  m_Center: {x: -0.0016951163, y: 0.031709667, z: -0.00075145566}
+  m_Size: {x: 0.30444935, y: 0.99395037, z: 0.40154135}
+  m_Center: {x: 0.0029094217, y: 0.49735022, z: 0.08373906}
 --- !u!114 &773469181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8863,90 +8863,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25815f80514cd7e48a0b4080664d46d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  organHighlight: {fileID: 773560673}
---- !u!1 &773560673
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 773560674}
-  - component: {fileID: 773560677}
-  - component: {fileID: 773560676}
-  m_Layer: 0
-  m_Name: OrganHighlight
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &773560674
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 773560673}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.1013, z: 0}
-  m_LocalScale: {x: 0.2045, y: 0.2045, z: 0.2045}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 773469175}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!23 &773560676
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 773560673}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: f7f13924fb0108341b3f02000a7daf82, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &773560677
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 773560673}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &774579903
 GameObject:
   m_ObjectHideFlags: 0
@@ -11308,7 +11224,6 @@ GameObject:
   - component: {fileID: 986458568}
   - component: {fileID: 986458567}
   - component: {fileID: 986458570}
-  - component: {fileID: 986458571}
   m_Layer: 0
   m_Name: Sphere Interactable
   m_TagString: Untagged
@@ -11606,19 +11521,6 @@ MonoBehaviour:
   m_MinimumScaleRatio: 0.25
   m_MaximumScaleRatio: 2
   m_ScaleMultiplier: 0.25
---- !u!114 &986458571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 986458563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3af4b14350e51ad4aa5efa408c79c291, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  organHighlight: {fileID: 773560673}
 --- !u!1001 &1004275881
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14318,9 +14220,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -4216859302048453862, guid: dc173a4e482374388a45c43e5a21e656, type: 3}
       insertIndex: -1
       addedObject: {fileID: 475632887}
-    - targetCorrespondingSourceObject: {fileID: -4216859302048453862, guid: dc173a4e482374388a45c43e5a21e656, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 773560674}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -927199367670048503, guid: dc173a4e482374388a45c43e5a21e656, type: 3}
       insertIndex: -1
@@ -19050,7 +18949,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 1e-44, z: 0, w: 2.2e-44}
+  m_BoundingSphereOverride: {x: 0, y: 8.4e-44, z: 0, w: NaN}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
