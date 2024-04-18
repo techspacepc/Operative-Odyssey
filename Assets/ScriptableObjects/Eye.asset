@@ -23,7 +23,7 @@ MonoBehaviour:
       the eye is called the iris. The iris has an opening called the pupil. The pupil
       lets light into the eye. The iris and the pupil are covered by the transparent
       cornea. '
-    PageImage: {fileID: 21300000, guid: 4b2979f7bd633b248b84cef945189e38, type: 3}
+    PageImage: {fileID: 21300000, guid: 20c29d661603ecc4686051f88f5b5d5d, type: 3}
   - PageTitle: Pupillary Reflex
     PageInfo: Light enters your eye through the pupil. The pupil gets larger and
       smaller depending on the amount of light. This is referred to as the pupillary

@@ -19,12 +19,12 @@ MonoBehaviour:
       minute. That is what we call \u2018a heart rate of 70\u2019. The heartbeat
       can be heard because closing the valves creates a sound. The way the heart
       works is made up of three phases (see figure 6):"
-    PageImage: {fileID: 21300000, guid: 4b1382b69f26beb4a86021da3ac486fc, type: 3}
+    PageImage: {fileID: 21300000, guid: 76138ea8eb0bace49b8ca08926989b47, type: 3}
   - PageTitle: Cardiac Cycle 2
     PageInfo: 1 The heartbeat starts with contraction of the atria, which filled
       with blood just before. Both atria contract at the same time. This makes blood
       flow into the ventricles (see figure 6.1). The ventricles are relaxed.
-    PageImage: {fileID: 21300000, guid: 4b1382b69f26beb4a86021da3ac486fc, type: 3}
+    PageImage: {fileID: 21300000, guid: 76138ea8eb0bace49b8ca08926989b47, type: 3}
   - PageTitle: Cardiac Cycle 3
     PageInfo: 2 Once the ventricles are filled with blood, they contract (see figure
       6.2). The heart valves close and prevent the blood from flowing back into the
@@ -32,7 +32,7 @@ MonoBehaviour:
       is higher than the pressure in the aorta and the pulmonary artery, the semilunar
       valves are pushed open. Blood is pumped simultaneously into the aorta and the
       pulmonary artery. During the contraction of the ventricles, the atria are relaxed.
-    PageImage: {fileID: 21300000, guid: 4b1382b69f26beb4a86021da3ac486fc, type: 3}
+    PageImage: {fileID: 21300000, guid: 76138ea8eb0bace49b8ca08926989b47, type: 3}
   - PageTitle: Cardiac Cycle 4
     PageInfo: "3 After this, there is the cardiac pause, when both the atria and
       the ventricles are relaxed. The blood flows from the vena cava and pulmonary
@@ -40,4 +40,4 @@ MonoBehaviour:
       6.3). The semilunar valves are closed. This keeps the blood from the pulmonary
       artery and aorta from flowing back into the ventricles. Then it\u2019s phase
       1 again."
-    PageImage: {fileID: 21300000, guid: 4b1382b69f26beb4a86021da3ac486fc, type: 3}
+    PageImage: {fileID: 21300000, guid: 76138ea8eb0bace49b8ca08926989b47, type: 3}

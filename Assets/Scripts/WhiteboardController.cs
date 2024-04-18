@@ -15,9 +15,9 @@ public class WhiteboardController : MonoBehaviour
     private OrganInfoData organData;
     private int currentOrganNumber, currentPageNumber;
 
-    // Start is called before the first frame update
     private void Start()
     {
+        //todo: add in a default explainer page before showing the organs.
         organData = organList[currentOrganNumber];
         OrganInfoData.OrganInfoEntry currentOrganPage = organData.pages[currentPageNumber];
 
@@ -27,6 +27,7 @@ public class WhiteboardController : MonoBehaviour
         pageImageBox.sprite = currentOrganPage.PageImage;
     }
 
+    //top button calls upon this. its rather hard coded rn, can polish it in the future.
     public void organSwitch(int switchToOrganNumber)
     {
         currentOrganNumber = switchToOrganNumber;
@@ -34,6 +35,10 @@ public class WhiteboardController : MonoBehaviour
         updateOrganInfo();
     }
 
+    /// <summary>
+    /// updates the current organ data to match the current organ and page.
+    /// update currentOrganNumber or currentPageNumber and then call upon this to see a change.
+    /// </summary>
     private void updateOrganInfo()
     {
         organData = organList[currentOrganNumber];
@@ -47,12 +52,14 @@ public class WhiteboardController : MonoBehaviour
 
     public void PageUp()
     {
+        //check to not go beyond max page of current organ.
         if ((organData.pages.Length - 1) > currentPageNumber) currentPageNumber++;
         updateOrganInfo();
     }
 
     public void PageDown()
     {
+        //check to not go beyond min page of current organ.
         if (currentPageNumber > 0) currentPageNumber--;
         updateOrganInfo();
     }
