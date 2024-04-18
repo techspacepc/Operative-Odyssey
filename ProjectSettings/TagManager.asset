@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Anchor
   - Scalpel
+  - Tray
   layers:
   - Default
   - TransparentFX
