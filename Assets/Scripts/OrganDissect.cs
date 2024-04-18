@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class OrganDissect : MonoBehaviour
 {
@@ -13,7 +12,7 @@ public class OrganDissect : MonoBehaviour
     [SerializeField] private GameObject half;
 
     [System.Serializable]
-    public class Data
+    public struct Data
     {
         public GameObject obj;
         public Vector3 loc;
@@ -60,14 +59,13 @@ public class OrganDissect : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void Grabbed()
+    public void Grabbed(SelectEnterEventArgs args)
     {
+        if (args.interactableObject.transform.gameObject.CompareTag("Tray")) return;
+
         dissecting = false;
         grabbed = true;
     }
 
-    public void Released()
-    {
-        grabbed = false;
-    }
+    public void Released() => grabbed = false;
 }
