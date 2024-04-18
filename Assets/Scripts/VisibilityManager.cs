@@ -25,7 +25,7 @@ public class VisibilityManager : MonoBehaviour
         socket.selectEntered.AddListener(OnObjectInserted);
         socket.selectExited.AddListener(OnObjectRemoved);
 
-        renderer = GetComponent<Renderer>();
+        renderer = Torso.GetComponent<Renderer>();
         opaqueMaterial = renderer.material;
     }
 
@@ -42,7 +42,6 @@ public class VisibilityManager : MonoBehaviour
 
         knifeRenderer = Knife.GetComponent<Renderer>();
         knifeMaterial = knifeRenderer.material;
-        transparantMaterial = knifeMaterial;
 
         Color knifeColor = knifeMaterial.color;
         knifeColor.a = 0.0f;
@@ -106,6 +105,7 @@ public class VisibilityManager : MonoBehaviour
 
     private System.Collections.IEnumerator FadeOutTorso()
     {
+        ChangeToTransparant();
         Color torsoColor = Torso.GetComponent<Renderer>().material.color;
         torsoColor.a = 1.0f;
         Torso.GetComponent<Renderer>().material.color = torsoColor;
@@ -122,11 +122,13 @@ public class VisibilityManager : MonoBehaviour
             yield return null;
         }
 
+        ChangeToOpaque();
         Torso.SetActive(false);
     }
 
     private System.Collections.IEnumerator FadeInTorso()
     {
+        ChangeToTransparant();
         Color torsoColor = Torso.GetComponent<Renderer>().material.color;
         torsoColor.a = 0.0f;
         Torso.GetComponent<Renderer>().material.color = torsoColor;
@@ -142,6 +144,7 @@ public class VisibilityManager : MonoBehaviour
 
             yield return null;
         }
+        ChangeToOpaque();
     }
 
     private System.Collections.IEnumerator FadeInKnife()

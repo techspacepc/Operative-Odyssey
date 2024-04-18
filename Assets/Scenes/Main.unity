@@ -8866,6 +8866,7 @@ MonoBehaviour:
   Tray: {fileID: 773469171}
   Torso: {fileID: 519678228}
   Knife: {fileID: 111257929}
+  transparantMaterial: {fileID: 2100000, guid: 95954ded9f958324aa5929ce4490ada1, type: 2}
 --- !u!1 &774579903
 GameObject:
   m_ObjectHideFlags: 0
@@ -18959,7 +18960,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 1.05e-43}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 3e-45, z: 1.511e-41, w: -9.339957e-39}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
