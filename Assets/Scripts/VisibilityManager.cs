@@ -24,12 +24,15 @@ public class VisibilityManager : MonoBehaviour
     private void Awake()
     {
         socket = tray.GetComponent<XRSocketInteractor>();
-        socket.selectEntered.AddListener(OnObjectInserted);
-        socket.selectExited.AddListener(OnObjectRemoved);
-
         renderer = torso.GetComponent<Renderer>();
         torsoRenderer = torso.GetComponent<Renderer>();
         opaqueMaterial = renderer.material;
+    }
+
+    private void OnEnable()
+    {
+        socket.selectEntered.AddListener(OnObjectInserted);
+        socket.selectExited.AddListener(OnObjectRemoved);
     }
 
     private void OnDisable()
