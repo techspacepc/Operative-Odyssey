@@ -11,7 +11,6 @@ public class XROrganSocketInteractor : XRSocketInteractor, IOrgan
         base.Awake();
 
         startingSelectedInteractable.gameObject.AddComponent<OrganIdentifier>().Organ = Organ;
-        startingSelectedInteractable.gameObject.AddComponent<SocketHighlight>();
     }
 
     private bool MatchOrgan(IXRInteractable interactable)
