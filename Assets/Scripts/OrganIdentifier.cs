@@ -2,7 +2,11 @@ using UnityEngine;
 
 namespace Organs
 {
-    public class OrganIdentifier : MonoBehaviour, IOrgan { [field: SerializeField] public OrganType Organ { get; set; } }
+    public class OrganIdentifier : MonoBehaviour, IOrgan
+    {
+        [field: SerializeField] public OrganType Organ { get; set; }
+        public bool IsGrabbed { get; set; }
+    }
 
     public enum OrganType
     {
@@ -11,5 +15,9 @@ namespace Organs
         Eye
     }
 
-    public interface IOrgan { OrganType Organ { get; set; } }
+    public interface IOrgan
+    {
+        OrganType Organ { get; set; }
+        bool IsGrabbed { get; set; }
+    }
 }
