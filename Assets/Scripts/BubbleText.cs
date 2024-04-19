@@ -10,9 +10,12 @@ public class BubbleText : MonoBehaviour
     [SerializeField] private Material hoverMaterial;
 
     void OnTriggerEnter(Collider other){
-        text.SetActive(true);
-        bubbleRenderer.material = hoverMaterial;
-        bubbleRenderer.enabled = false;
+        if (other.gameObject.CompareTag("Scalpel"))
+        {
+            text.SetActive(true);
+            bubbleRenderer.material = hoverMaterial;
+            bubbleRenderer.enabled = false;
+        }
     }
 
     void OnTriggerStay(Collider other){
