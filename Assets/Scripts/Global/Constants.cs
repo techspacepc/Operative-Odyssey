@@ -12,6 +12,7 @@ namespace Constants
         public static readonly string Anchor = nameof(Anchor);
         public static readonly string Scalpel = nameof(Scalpel);
         public static readonly string Tray = nameof(Tray);
+        public static readonly string Torso = nameof(Torso);
     }
 
     public static class Const

@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.Net.Sockets;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -16,6 +14,9 @@ namespace Organs
         private XRGrabInteractable socketedInteractable;
         private IOrgan socketedOrgan;
         private const float time = 0.1f;
+
+        private void MakeOrganIdle(SelectExitEventArgs _) => idleOrgans.Add(gameObject);
+        private void MakeOrganActive(SelectEnterEventArgs _) => idleOrgans.Remove(gameObject);
 
         private void GrabGracePeriod() => socketedOrgan.IsGrabbed = false;
         public void OnGrabbed(SelectEnterEventArgs _) => socketedOrgan.IsGrabbed = true;
@@ -37,6 +38,13 @@ namespace Organs
             socketedInteractable = startingSelectedInteractable.GetComponent<XRGrabInteractable>();
         }
 
+        protected override void Start()
+        {
+            base.Start();
+
+            idleOrgans.Add(gameObject);
+        }
+
         private bool MatchOrgan(IXRInteractable interactable)
             => interactable.transform.TryGetComponent(out IOrgan I) && I.Organ == Organ;
 
@@ -52,6 +60,9 @@ namespace Organs
 
             socketedInteractable.selectEntered.AddListener(OnGrabbed);
             socketedInteractable.selectExited.AddListener(OnReleased);
+
+            selectEntered.AddListener(MakeOrganActive);
+            selectExited.AddListener(MakeOrganIdle);
         }
 
         protected override void OnDisable()
@@ -60,6 +71,9 @@ namespace Organs
 
             socketedInteractable.selectEntered.RemoveListener(OnGrabbed);
             socketedInteractable.selectExited.RemoveListener(OnReleased);
+
+            selectEntered.RemoveListener(MakeOrganActive);
+            selectExited.RemoveListener(MakeOrganIdle);
         }
     }
 }
