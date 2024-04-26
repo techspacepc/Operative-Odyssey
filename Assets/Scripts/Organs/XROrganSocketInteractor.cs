@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Net.Sockets;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -8,6 +9,7 @@ namespace Organs
     [RequireComponent(typeof(OrganRecaller))]
     public class XROrganSocketInteractor : XRSocketInteractor, IOrgan
     {
+        public static HashSet<GameObject> idleOrgans;
         [field: SerializeField] public OrganType Organ { get; set; }
         public bool IsGrabbed { get; set; } // Will not get used, is just required to be implemented because of the interface, perhaps there should be an IGrabbable Interface?
 
