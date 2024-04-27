@@ -12,6 +12,7 @@
 
 # Custom
 Assets/[Ii]mport/
+Packages/com.unity.render-pipelines.universal@14.0.11
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
