@@ -1,4 +1,6 @@
-namespace Constants
+using UnityEngine.XR.Interaction.Toolkit;
+
+namespace Tags
 {
     public static class Tag
     {
@@ -14,9 +16,23 @@ namespace Constants
         public static readonly string Tray = nameof(Tray);
         public static readonly string Torso = nameof(Torso);
     }
+}
 
-    public static class Const
+namespace InteractionLayerManagement
+{
+    public enum InteractionLayer
     {
-        // For future use.
+        Default,
+        OrganTray,
+        OrganSocket,
+        Teleport
+    }
+
+    public static class InteractionLayerManagement
+    {
+        public static int AddAllInteractionLayers(this XRGrabInteractable interactable) => interactable.interactionLayers = -1;
+        public static int RemoveAllInteractionLayers(this XRGrabInteractable interactable) => interactable.interactionLayers = 0;
+        public static int AddInteractionLayer(this XRGrabInteractable interactable, InteractionLayer interactionLayer) => interactable.interactionLayers |= 1 << (int)interactionLayer;
+        public static int RemoveInteractionLayer(this XRGrabInteractable interactable, InteractionLayer interactionLayer) => interactable.interactionLayers &= ~(1 << (int)interactionLayer);
     }
 }

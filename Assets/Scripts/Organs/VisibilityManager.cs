@@ -1,9 +1,10 @@
-using Constants;
+using InteractionLayerManagement;
 using Organs;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Tags;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -113,7 +114,7 @@ public class VisibilityManager : MonoBehaviour
         GetFadingVariables(in gameObjects, out float currentAlpha, out List<Material> materials, out List<Color> colors);
 
         foreach (GameObject gameObject in gameObjects) // Since this currently only uses the organ list, it assumes ALL objects have the XRGrabInteractable component.
-            gameObject.GetComponent<XRGrabInteractable>().enabled = false;
+            gameObject.GetComponent<XRGrabInteractable>().RemoveInteractionLayer(InteractionLayer.Default);
 
         while (currentAlpha != 0)
         {
@@ -128,7 +129,7 @@ public class VisibilityManager : MonoBehaviour
 
         if (gameObject.CompareTag(Tag.Torso)) material = torsoRenderer.material = torsoTransparant;
 
-        if (gameObject.TryGetComponent(out XRGrabInteractable interactable)) interactable.enabled = false;
+        if (gameObject.TryGetComponent(out XRGrabInteractable interactable)) interactable.RemoveInteractionLayer(InteractionLayer.Default);
 
         while (currentAlpha != 0)
         {
@@ -156,7 +157,7 @@ public class VisibilityManager : MonoBehaviour
         }
 
         foreach (GameObject gameObject in gameObjects) // Since this currently only uses the organ list, it assumes ALL objects have the XRGrabInteractable component.
-            gameObject.GetComponent<XRGrabInteractable>().enabled = true;
+            gameObject.GetComponent<XRGrabInteractable>().AddInteractionLayer(InteractionLayer.Default);
     }
     private IEnumerator FadeInObject(GameObject gameObject)
     {
@@ -169,7 +170,7 @@ public class VisibilityManager : MonoBehaviour
             yield return fadeUpdateInterval;
         }
 
-        if (gameObject.TryGetComponent(out XRGrabInteractable interactable)) interactable.enabled = true;
+        if (gameObject.TryGetComponent(out XRGrabInteractable interactable)) interactable.AddInteractionLayer(InteractionLayer.Default);
 
         if (gameObject.CompareTag(Tag.Torso)) torsoRenderer.material = torsoOpaque;
     }
