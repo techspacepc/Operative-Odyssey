@@ -1,5 +1,6 @@
 using Constants;
 using Organs;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,10 @@ public class VisibilityManager : MonoBehaviour
     private const float alphaIncrementor = 1f / (fadeTime / _fadeUpdateInterval);
 
     private readonly Coroutine[] fadeCoroutines = new Coroutine[3];
+
+    private bool IsArrayNullOrEmpty(GameObject[] array) => array == null || array.Length == 0;
+    private void LogArrayEmptyOrNullWarning(GameObject[] array, string methodName)
+        => Debug.LogWarning($"GameObject Fading Array >{array}< was {(array == null ? "null" : "empty")}.\n The {methodName} method has been returned to prevent a {nameof(NullReferenceException)}.");
 
     private void StartOnCoroutineAvailable(int coroutineIndex, IEnumerator coroutine)
     {
@@ -97,6 +102,12 @@ public class VisibilityManager : MonoBehaviour
 
     private IEnumerator FadeOutObject(GameObject[] gameObjects)
     {
+        if (IsArrayNullOrEmpty(gameObjects))
+        {
+            LogArrayEmptyOrNullWarning(gameObjects, nameof(FadeOutObject));
+            yield break;
+        }
+
         GetFadingVariables(in gameObjects, out float currentAlpha, out List<Material> materials, out List<Color> colors);
 
         while (currentAlpha != 0)
@@ -122,6 +133,12 @@ public class VisibilityManager : MonoBehaviour
 
     private IEnumerator FadeInObject(GameObject[] gameObjects)
     {
+        if (IsArrayNullOrEmpty(gameObjects))
+        {
+            LogArrayEmptyOrNullWarning(gameObjects, nameof(FadeInObject));
+            yield break;
+        }
+
         GetFadingVariables(in gameObjects, out float currentAlpha, out List<Material> materials, out List<Color> colors);
 
         while (currentAlpha != 1)
