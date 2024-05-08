@@ -37,10 +37,6 @@ public class VisibilityManager : MonoBehaviour
 
     private void OnOrganSocketed(SelectEnterEventArgs args)
     {
-        if (traySocket.interactablesSelected.Count == 0) return;
-
-        Debug.Log("Socketed");
-
         StartOnCoroutineAvailable(0, FadeOutObject(torso));
         StartOnCoroutineAvailable(1, FadeInObject(scalpel));
         StartOnCoroutineAvailable(2, FadeOutObject(XROrganSocketInteractor.idleOrgans.ToArray()));
@@ -48,10 +44,6 @@ public class VisibilityManager : MonoBehaviour
 
     private void OnOrganUnsocketed(SelectExitEventArgs args)
     {
-        if (traySocket.interactablesSelected.Count > 0) return;
-
-        Debug.Log("UnSocketed");
-
         StartOnCoroutineAvailable(0, FadeInObject(torso));
         StartOnCoroutineAvailable(1, FadeOutObject(scalpel));
         StartOnCoroutineAvailable(2, FadeInObject(XROrganSocketInteractor.idleOrgans.ToArray()));
@@ -90,7 +82,7 @@ public class VisibilityManager : MonoBehaviour
             materials[i].color = color;
         }
 
-        return currentAlpha;
+        return Mathf.Clamp01(currentAlpha);
     }
     private float UpdateCurrentAlphaBy(float currentAlpha, float alphaDelta, in Material material, Color color)
     {
@@ -122,7 +114,7 @@ public class VisibilityManager : MonoBehaviour
 
         while (currentAlpha != 0)
         {
-            currentAlpha = UpdateCurrentAlphaBy(currentAlpha, alphaDecrementor, material, color, gameObject);
+            currentAlpha = UpdateCurrentAlphaBy(currentAlpha, alphaDecrementor, material, color);
 
             yield return fadeUpdateInterval;
         }

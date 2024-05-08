@@ -15,8 +15,8 @@ namespace Organs
         private IOrgan socketedOrgan;
         private const float time = 0.1f;
 
-        private void MakeOrganIdle(SelectExitEventArgs _) => idleOrgans.Add(startingSelectedInteractable.gameObject);
-        private void MakeOrganActive(SelectEnterEventArgs _) => idleOrgans.Remove(startingSelectedInteractable.gameObject);
+        private void MakeOrganIdle(SelectEnterEventArgs _) => idleOrgans.Add(startingSelectedInteractable.gameObject);
+        private void MakeOrganActive(SelectExitEventArgs _) => idleOrgans.Remove(startingSelectedInteractable.gameObject);
 
         private void GrabGracePeriod() => socketedOrgan.IsGrabbed = false;
         public void OnGrabbed(SelectEnterEventArgs _) => socketedOrgan.IsGrabbed = true;
@@ -62,8 +62,8 @@ namespace Organs
             socketedInteractable.selectEntered.AddListener(OnGrabbed);
             socketedInteractable.selectExited.AddListener(OnReleased);
 
-            selectEntered.AddListener(MakeOrganActive);
-            selectExited.AddListener(MakeOrganIdle);
+            selectEntered.AddListener(MakeOrganIdle);
+            selectExited.AddListener(MakeOrganActive);
         }
 
         protected override void OnDisable()
@@ -73,8 +73,8 @@ namespace Organs
             socketedInteractable.selectEntered.RemoveListener(OnGrabbed);
             socketedInteractable.selectExited.RemoveListener(OnReleased);
 
-            selectEntered.RemoveListener(MakeOrganActive);
-            selectExited.RemoveListener(MakeOrganIdle);
+            selectEntered.RemoveListener(MakeOrganIdle);
+            selectExited.RemoveListener(MakeOrganActive);
         }
     }
 }
