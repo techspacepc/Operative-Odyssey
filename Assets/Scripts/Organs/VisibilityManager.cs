@@ -61,14 +61,14 @@ public class VisibilityManager : MonoBehaviour
             colors.Add(material.color);
         }
 
-        currentAlpha = 1;
+        currentAlpha = colors[0].a; // Uses colors of index 0 since all objects will have the same alpha anyway - they all fade at the same time.
     }
     private void GetFadingVariables(in GameObject gameObject, out float currentAlpha, out Material material, out Color color)
     {
         material = gameObject.GetComponent<Renderer>().material; // Passing in the Material or Renderer as parameter would be more efficient.
         color = material.color;
 
-        currentAlpha = 1;
+        currentAlpha = color.a;
     }
 
     private float UpdateCurrentAlphaBy(float currentAlpha, float alphaDelta, in List<Material> materials, in List<Color> colors)
@@ -124,8 +124,6 @@ public class VisibilityManager : MonoBehaviour
     {
         GetFadingVariables(in gameObjects, out float currentAlpha, out List<Material> materials, out List<Color> colors);
 
-        currentAlpha = 0;
-
         while (currentAlpha != 1)
         {
             currentAlpha = UpdateCurrentAlphaBy(currentAlpha, alphaIncrementor, materials, colors);
@@ -136,8 +134,6 @@ public class VisibilityManager : MonoBehaviour
     private IEnumerator FadeInObject(GameObject gameObject)
     {
         GetFadingVariables(in gameObject, out float currentAlpha, out Material material, out Color color);
-
-        currentAlpha = 0;
 
         while (currentAlpha != 1)
         {
