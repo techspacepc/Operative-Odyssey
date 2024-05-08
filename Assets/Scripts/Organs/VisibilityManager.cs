@@ -22,22 +22,39 @@ public class VisibilityManager : MonoBehaviour
     private const float alphaDecrementor = -1f / (fadeTime / _fadeUpdateInterval);
     private const float alphaIncrementor = 1f / (fadeTime / _fadeUpdateInterval);
 
+    private readonly Coroutine[] fadeCoroutines = new Coroutine[3];
+
+    private void StartOnCoroutineAvailable(int coroutineIndex, IEnumerator coroutine)
+    {
+        if (fadeCoroutines[coroutineIndex] != null)
+        {
+            StopCoroutine(fadeCoroutines[coroutineIndex]);
+            fadeCoroutines[coroutineIndex] = null;
+        }
+
+        fadeCoroutines[coroutineIndex] = StartCoroutine(coroutine);
+    }
+
     private void OnOrganSocketed(SelectEnterEventArgs args)
     {
         if (traySocket.interactablesSelected.Count == 0) return;
 
-        StartCoroutine(FadeOutObject(torso));
-        StartCoroutine(FadeInObject(scalpel));
-        StartCoroutine(FadeOutObject(XROrganSocketInteractor.idleOrgans.ToArray())); // This should probably be optimised.
+        Debug.Log("Socketed");
+
+        StartOnCoroutineAvailable(0, FadeOutObject(torso));
+        StartOnCoroutineAvailable(1, FadeInObject(scalpel));
+        StartOnCoroutineAvailable(2, FadeOutObject(XROrganSocketInteractor.idleOrgans.ToArray()));
     }
 
     private void OnOrganUnsocketed(SelectExitEventArgs args)
     {
         if (traySocket.interactablesSelected.Count > 0) return;
 
-        StartCoroutine(FadeInObject(torso));
-        StartCoroutine(FadeOutObject(scalpel));
-        StartCoroutine(FadeInObject(XROrganSocketInteractor.idleOrgans.ToArray())); // This should probably be optimised.
+        Debug.Log("UnSocketed");
+
+        StartOnCoroutineAvailable(0, FadeInObject(torso));
+        StartOnCoroutineAvailable(1, FadeOutObject(scalpel));
+        StartOnCoroutineAvailable(2, FadeInObject(XROrganSocketInteractor.idleOrgans.ToArray()));
     }
 
     private void GetFadingVariables(in GameObject[] gameObjects, out float currentAlpha, out List<Material> materials, out List<Color> colors)
@@ -83,7 +100,7 @@ public class VisibilityManager : MonoBehaviour
         col.a = currentAlpha;
         material.color = col;
 
-        return currentAlpha;
+        return Mathf.Clamp01(currentAlpha);
     }
 
     private IEnumerator FadeOutObject(GameObject[] gameObjects)
@@ -101,11 +118,11 @@ public class VisibilityManager : MonoBehaviour
     {
         GetFadingVariables(in gameObject, out float currentAlpha, out Material material, out Color color);
 
-        if (gameObject.CompareTag(Tag.Torso)) torsoRenderer.material = torsoTransparant;
+        if (gameObject.CompareTag(Tag.Torso)) material = torsoRenderer.material = torsoTransparant;
 
         while (currentAlpha != 0)
         {
-            currentAlpha = UpdateCurrentAlphaBy(currentAlpha, alphaDecrementor, material, color);
+            currentAlpha = UpdateCurrentAlphaBy(currentAlpha, alphaDecrementor, material, color, gameObject);
 
             yield return fadeUpdateInterval;
         }
@@ -115,7 +132,9 @@ public class VisibilityManager : MonoBehaviour
     {
         GetFadingVariables(in gameObjects, out float currentAlpha, out List<Material> materials, out List<Color> colors);
 
-        while (currentAlpha != 0)
+        currentAlpha = 0;
+
+        while (currentAlpha != 1)
         {
             currentAlpha = UpdateCurrentAlphaBy(currentAlpha, alphaIncrementor, materials, colors);
 
@@ -126,7 +145,9 @@ public class VisibilityManager : MonoBehaviour
     {
         GetFadingVariables(in gameObject, out float currentAlpha, out Material material, out Color color);
 
-        while (currentAlpha != 0)
+        currentAlpha = 0;
+
+        while (currentAlpha != 1)
         {
             currentAlpha = UpdateCurrentAlphaBy(currentAlpha, alphaIncrementor, material, color);
 
@@ -141,6 +162,8 @@ public class VisibilityManager : MonoBehaviour
         traySocket = GameObject.FindGameObjectWithTag(Tag.Tray).GetComponent<XRSocketInteractor>();
         torsoRenderer = torso.GetComponent<Renderer>();
         torsoOpaque = torsoRenderer.material;
+
+        StartCoroutine(FadeOutObject(scalpel));
     }
 
     private void OnEnable()
