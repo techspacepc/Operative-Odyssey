@@ -64,6 +64,8 @@ public class VisibilityManager : MonoBehaviour
             Material material = gameObject.GetComponent<Renderer>().material; // Passing in the Material or Renderer as parameter would be more efficient.
             materials.Add(material);
             colors.Add(material.color);
+
+            gameObject.GetComponent<XRGrabInteractable>().enabled = material.color.a <= 1;
         }
 
         currentAlpha = colors[0].a; // Uses colors of index 0 since all objects will have the same alpha anyway - they all fade at the same time.
@@ -110,6 +112,9 @@ public class VisibilityManager : MonoBehaviour
 
         GetFadingVariables(in gameObjects, out float currentAlpha, out List<Material> materials, out List<Color> colors);
 
+        foreach (GameObject gameObject in gameObjects) // Since this currently only uses the organ list, it assumes ALL objects have the XRGrabInteractable component.
+            gameObject.GetComponent<XRGrabInteractable>().enabled = false;
+
         while (currentAlpha != 0)
         {
             currentAlpha = UpdateCurrentAlphaBy(currentAlpha, alphaDecrementor, materials, colors);
@@ -122,6 +127,8 @@ public class VisibilityManager : MonoBehaviour
         GetFadingVariables(in gameObject, out float currentAlpha, out Material material, out Color color);
 
         if (gameObject.CompareTag(Tag.Torso)) material = torsoRenderer.material = torsoTransparant;
+
+        if (gameObject.TryGetComponent(out XRGrabInteractable interactable)) interactable.enabled = false;
 
         while (currentAlpha != 0)
         {
@@ -147,6 +154,9 @@ public class VisibilityManager : MonoBehaviour
 
             yield return fadeUpdateInterval;
         }
+
+        foreach (GameObject gameObject in gameObjects) // Since this currently only uses the organ list, it assumes ALL objects have the XRGrabInteractable component.
+            gameObject.GetComponent<XRGrabInteractable>().enabled = true;
     }
     private IEnumerator FadeInObject(GameObject gameObject)
     {
@@ -158,6 +168,8 @@ public class VisibilityManager : MonoBehaviour
 
             yield return fadeUpdateInterval;
         }
+
+        if (gameObject.TryGetComponent(out XRGrabInteractable interactable)) interactable.enabled = true;
 
         if (gameObject.CompareTag(Tag.Torso)) torsoRenderer.material = torsoOpaque;
     }
