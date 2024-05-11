@@ -17993,6 +17993,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1813355773}
   - component: {fileID: 1813355774}
+  - component: {fileID: 1813355775}
   m_Layer: 0
   m_Name: VisibilityManager
   m_TagString: Untagged
@@ -18030,6 +18031,18 @@ MonoBehaviour:
   torso: {fileID: 519678228}
   scalpel: {fileID: 456415801303143002}
   torsoTransparant: {fileID: 2100000, guid: 95954ded9f958324aa5929ce4490ada1, type: 2}
+--- !u!114 &1813355775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813355772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b77892e1a50e34f459f3b9df7ec0cafa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1815318735
 GameObject:
   m_ObjectHideFlags: 0
@@ -35297,6 +35310,7 @@ Rigidbody:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1813355773}
   - {fileID: 3449603735226254009}
   - {fileID: 1825262782}
   - {fileID: 2046629159}
@@ -35306,7 +35320,6 @@ SceneRoots:
   - {fileID: 646208180}
   - {fileID: 1345941703}
   - {fileID: 1289492134}
-  - {fileID: 1813355773}
   - {fileID: 1969720334}
   - {fileID: 6337018180130673437}
   - {fileID: 5833650761669179977}
