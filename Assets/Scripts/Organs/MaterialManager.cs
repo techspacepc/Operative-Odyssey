@@ -18,10 +18,10 @@ public class MaterialManager : MonoBehaviour
             FindMaterialByTag(Tag.Scalpel)
         };
 
-        OrganIdentifier[] organs = FindObjectsOfType<OrganIdentifier>();
+        GameObject[] organs = GameObject.FindGameObjectsWithTag(Tag.Organ);
 
-        foreach (OrganIdentifier organ in organs)
-            if (organ.gameObject.TryGetComponent(out Renderer renderer)) materials.Add(renderer.sharedMaterial);
+        foreach (GameObject organ in organs)
+            if (organ.TryGetComponent(out Renderer renderer)) materials.Add(renderer.sharedMaterial);
 
         foreach (Material material in materials)
         {

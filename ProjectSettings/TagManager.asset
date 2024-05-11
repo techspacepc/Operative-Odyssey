@@ -8,6 +8,7 @@ TagManager:
   - Scalpel
   - Tray
   - Torso
+  - Organ
   layers:
   - Default
   - TransparentFX
