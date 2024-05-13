@@ -10,6 +10,16 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class VisibilityManager : MonoBehaviour
 {
+    public enum ManagedObjects
+    {
+        Torso,
+        Scalpel,
+        // Due to retrictiveness of enums; them being a compile-time member, I've to write out the Organs from the organ enum here as well.
+        Heart,
+        Kidney,
+        Eye
+    }
+
     [SerializeField] private GameObject torso, scalpel;
 
     private Renderer torsoRenderer;
