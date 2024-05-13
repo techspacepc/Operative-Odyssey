@@ -634,7 +634,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -756,6 +756,8 @@ MonoBehaviour:
   pageTitleText: {fileID: 2207030855938348135}
   pageInfoText: {fileID: 1475453567093063208}
   pageImageBox: {fileID: 6544202512458293618}
+  rightArrow: {fileID: 8945868489444145499}
+  leftArrow: {fileID: 3238741502325853909}
   organList:
   - {fileID: 11400000, guid: ddf833ab89a6b3d41bba2ea8c2dd3d4c, type: 2}
   - {fileID: 11400000, guid: e3bae2f4a06ae114cab7e840258b2e81, type: 2}

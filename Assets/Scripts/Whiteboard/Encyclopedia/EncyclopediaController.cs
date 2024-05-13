@@ -8,7 +8,7 @@ public class WhiteboardController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI pageOrganText, pageTitleText, pageInfoText;
     [SerializeField]
-    private Image pageImageBox;
+    private Image pageImageBox, rightArrow, leftArrow;
     [SerializeField]
     private List<OrganInfoData> organList = new();
 
@@ -41,6 +41,14 @@ public class WhiteboardController : MonoBehaviour
     /// </summary>
     private void UpdateOrganInfo()
     {
+        Color defaultColor = Color.white;
+        int totalPages = organData.pages.Length;
+        int nextPage = currentPageNumber + 1;
+        int prevPage = currentPageNumber - 1;
+
+        rightArrow.color = nextPage >= totalPages ? Color.gray : defaultColor;
+        leftArrow.color = prevPage < 0 ? Color.gray : defaultColor;
+
         organData = organList[currentOrganNumber];
         OrganInfoData.OrganInfoEntry currentOrganPage = organData.pages[currentPageNumber];
 
