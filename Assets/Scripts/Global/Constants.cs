@@ -4,18 +4,27 @@ namespace Tags
 {
     public static class Tag
     {
-        public static readonly string Untagged = nameof(Untagged);
-        public static readonly string Respawn = nameof(Respawn);
-        public static readonly string Finish = nameof(Finish);
-        public static readonly string EditorOnly = nameof(EditorOnly);
-        public static readonly string MainCamera = nameof(MainCamera);
-        public static readonly string Player = nameof(Player);
-        public static readonly string GameController = nameof(GameController);
-        public static readonly string Anchor = nameof(Anchor);
-        public static readonly string Scalpel = nameof(Scalpel);
-        public static readonly string Tray = nameof(Tray);
-        public static readonly string Torso = nameof(Torso);
-        public static readonly string Organ = nameof(Organ);
+        public const string Untagged = nameof(Untagged);
+        public const string Respawn = nameof(Respawn);
+        public const string Finish = nameof(Finish);
+        public const string EditorOnly = nameof(EditorOnly);
+        public const string MainCamera = nameof(MainCamera);
+        public const string Player = nameof(Player);
+        public const string GameController = nameof(GameController);
+        public const string Anchor = nameof(Anchor);
+        public const string Scalpel = nameof(Scalpel);
+        public const string Tray = nameof(Tray);
+        public const string Torso = nameof(Torso);
+        public const string Organ = nameof(Organ);
+    }
+}
+
+namespace Pathing
+{
+    public static class Path
+    {
+        public const string ResourcesFull = "Assets/Resources/TransparantMaterials";
+        public const string ResourcesShort = "TransparantMaterials";
     }
 }
 

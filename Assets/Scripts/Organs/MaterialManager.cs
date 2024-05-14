@@ -4,6 +4,7 @@ using System.Linq;
 using Tags;
 using UnityEditor;
 using UnityEngine;
+using Pathing;
 
 public class MaterialManager : MonoBehaviour
 {
@@ -44,7 +45,7 @@ public class MaterialManager : MonoBehaviour
                     $" Please ensure that the material name matches exactly one enum name.\nThe available enum names are: {string.Join(", ", visibilityManagedObjects)}.");
 
             Material copiedMaterial = new(material);
-            AssetDatabase.CreateAsset(copiedMaterial, $"Assets/Resources/{copiedMaterial.name}Transparant.asset");
+            AssetDatabase.CreateAsset(copiedMaterial, $"{Path.ResourcesFull}/{copiedMaterial.name}Transparant.asset");
         }
         AssetDatabase.SaveAssets();
     }
@@ -59,7 +60,7 @@ public class MaterialManager : MonoBehaviour
                 $" Please make sure that ALL enum members of {nameof(Organs.OrganType)} are within the {nameof(VisibilityManager.ManagedObjects)} enum.");
         }
 
-        Material[] materials = (Material[])Resources.LoadAll(string.Empty);
+        Material[] materials = Resources.LoadAll<Material>(Path.ResourcesShort);
 
         foreach (Material material in materials)
         {
