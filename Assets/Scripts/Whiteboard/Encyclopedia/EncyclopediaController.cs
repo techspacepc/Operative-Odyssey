@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class WhiteboardController : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshProUGUI pageOrganText, pageTitleText, pageInfoText;
+    private TextMeshProUGUI pageOrganText, pageTitleText, pageInfoText, pageNumberingText;
     [SerializeField]
     private Image pageImageBox, rightArrow, leftArrow;
     [SerializeField]
@@ -19,12 +19,7 @@ public class WhiteboardController : MonoBehaviour
     {
         // TODO: add in a default explainer page before showing the organs.
         organData = organList[currentOrganNumber];
-        OrganInfoData.OrganInfoEntry currentOrganPage = organData.pages[currentPageNumber];
-
-        pageOrganText.text = organData.OrganName;
-        pageTitleText.text = currentOrganPage.PageTitle;
-        pageInfoText.text = currentOrganPage.PageInfo;
-        pageImageBox.sprite = currentOrganPage.PageImage;
+        UpdateOrganInfo();
     }
 
     //top button calls upon this. its rather hard coded rn, can polish it in the future.
@@ -48,6 +43,8 @@ public class WhiteboardController : MonoBehaviour
 
         rightArrow.color = nextPage >= totalPages ? Color.gray : defaultColor;
         leftArrow.color = prevPage < 0 ? Color.gray : defaultColor;
+
+        pageNumberingText.text = ((nextPage) + "/" + (organData.pages.Length)); //next page is used here as otherwise page 0 exists, it works this way I swear - Dirk
 
         organData = organList[currentOrganNumber];
         OrganInfoData.OrganInfoEntry currentOrganPage = organData.pages[currentPageNumber];
