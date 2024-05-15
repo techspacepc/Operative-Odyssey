@@ -22,7 +22,7 @@ public class VisibilityManager : MonoBehaviour
 
     private MaterialManager materialManager;
 
-    private GameObject torso, scalpel;
+    private Renderer torso, scalpel;
 
     private XRSocketInteractor traySocket;
 
@@ -34,8 +34,9 @@ public class VisibilityManager : MonoBehaviour
 
     private readonly Coroutine[] fadeCoroutines = new Coroutine[3];
 
-    private bool IsArrayNullOrEmpty(GameObject[] array) => array == null || array.Length == 0;
-    private void LogArrayEmptyOrNullWarning(GameObject[] array, string methodName)
+    private bool IsArrayNullOrEmpty(Renderer[] array) => array == null || array.Length == 0;
+    private Renderer GetRendererByTag(string tag) => GameObject.FindGameObjectWithTag(tag).GetComponent<Renderer>();
+    private void LogArrayEmptyOrNullWarning(Renderer[] array, string methodName)
         => Debug.LogWarning($"GameObject Fading Array >{array}< was {(array == null ? "null" : "empty")}.\n The {methodName} method has been returned to prevent a {nameof(NullReferenceException)}.");
 
     private void StartOnCoroutineAvailable(int coroutineIndex, IEnumerator coroutine)
@@ -63,23 +64,23 @@ public class VisibilityManager : MonoBehaviour
         StartOnCoroutineAvailable(2, FadeInObject(XROrganSocketInteractor.idleOrgans.ToArray()));
     }
 
-    private void GetFadingVariables(in GameObject[] gameObjects, out float currentAlpha, out List<Material> materials, out List<Color> colors)
+    private void GetFadingVariables(in Renderer[] renderers, out float currentAlpha, out List<Material> materials, out List<Color> colors)
     {
         materials = new();
         colors = new();
 
-        foreach (GameObject gameObject in gameObjects)
+        foreach (Renderer renderer in renderers)
         {
-            Material material = gameObject.GetComponent<Renderer>().material; // Passing in the Material or Renderer as parameter would be more efficient.
+            Material material = renderer.GetComponent<Renderer>().material; // Passing in the Material or Renderer as parameter would be more efficient.
             materials.Add(material);
             colors.Add(material.color);
 
-            gameObject.GetComponent<XRGrabInteractable>().enabled = material.color.a <= 1;
+            renderer.GetComponent<XRGrabInteractable>().enabled = material.color.a <= 1;
         }
 
         currentAlpha = colors[0].a; // Uses colors of index 0 since all objects will have the same alpha anyway - they all fade at the same time.
     }
-    private void GetFadingVariables(in GameObject gameObject, out float currentAlpha, out Material material, out Color color)
+    private void GetFadingVariables(in Renderer gameObject, out float currentAlpha, out Material material, out Color color)
     {
         material = gameObject.GetComponent<Renderer>().material; // Passing in the Material or Renderer as parameter would be more efficient.
         color = material.color;
@@ -111,23 +112,23 @@ public class VisibilityManager : MonoBehaviour
         return Mathf.Clamp01(currentAlpha);
     }
 
-    private IEnumerator FadeOutObject(GameObject[] gameObjects)
+    private IEnumerator FadeOutObject(Renderer[] renderers)
     {
-        if (IsArrayNullOrEmpty(gameObjects))
+        if (IsArrayNullOrEmpty(renderers))
         {
-            LogArrayEmptyOrNullWarning(gameObjects, nameof(FadeOutObject));
+            LogArrayEmptyOrNullWarning(renderers, nameof(FadeOutObject));
             yield break;
         }
 
-        GetFadingVariables(in gameObjects, out float currentAlpha, out List<Material> materials, out List<Color> colors);
+        GetFadingVariables(in renderers, out float currentAlpha, out List<Material> materials, out List<Color> colors);
 
-        for (int i = 0; i < gameObjects.Length; i++) // Since this currently only uses the organ list, it assumes ALL objects have the XRGrabInteractable component.
+        for (int i = 0; i < renderers.Length; i++) // Since this currently only uses the organ list, it assumes ALL objects have the XRGrabInteractable component.
         {
-            gameObjects[i].GetComponent<XRGrabInteractable>().RemoveInteractionLayer(InteractionLayer.Default);
+            renderers[i].GetComponent<XRGrabInteractable>().RemoveInteractionLayer(InteractionLayer.Default);
 
             Material material, opaqueMaterial, managedMaterial;
             opaqueMaterial = material = materials[i];
-            managedMaterial = materialManager.managedMaterials[(ManagedObjects)Enum.Parse(typeof(ManagedObjects), gameObjects[i].GetComponent<IOrgan>().Organ.ToString())];
+            managedMaterial = materialManager.managedMaterials[(ManagedObjects)Enum.Parse(typeof(ManagedObjects), renderers[i].GetComponent<IOrgan>().Organ.ToString())];
 
             material = managedMaterial;
             managedMaterial = opaqueMaterial;
@@ -140,11 +141,11 @@ public class VisibilityManager : MonoBehaviour
             yield return fadeUpdateInterval;
         }
     }
-    private IEnumerator FadeOutObject(GameObject gameObject)
+    private IEnumerator FadeOutObject(Renderer renderer)
     {
-        GetFadingVariables(in gameObject, out float currentAlpha, out Material material, out Color color);
+        GetFadingVariables(in renderer, out float currentAlpha, out Material material, out Color color);
 
-        if (gameObject.TryGetComponent(out XRGrabInteractable interactable)) interactable.RemoveInteractionLayer(InteractionLayer.Default);
+        if (renderer.TryGetComponent(out XRGrabInteractable interactable)) interactable.RemoveInteractionLayer(InteractionLayer.Default);
 
         while (currentAlpha != 0)
         {
@@ -154,15 +155,15 @@ public class VisibilityManager : MonoBehaviour
         }
     }
 
-    private IEnumerator FadeInObject(GameObject[] gameObjects)
+    private IEnumerator FadeInObject(Renderer[] renderers)
     {
-        if (IsArrayNullOrEmpty(gameObjects))
+        if (IsArrayNullOrEmpty(renderers))
         {
-            LogArrayEmptyOrNullWarning(gameObjects, nameof(FadeInObject));
+            LogArrayEmptyOrNullWarning(renderers, nameof(FadeInObject));
             yield break;
         }
 
-        GetFadingVariables(in gameObjects, out float currentAlpha, out List<Material> materials, out List<Color> colors);
+        GetFadingVariables(in renderers, out float currentAlpha, out List<Material> materials, out List<Color> colors);
 
         while (currentAlpha != 1)
         {
@@ -171,21 +172,21 @@ public class VisibilityManager : MonoBehaviour
             yield return fadeUpdateInterval;
         }
 
-        for (int i = 0; i < gameObjects.Length; i++) // Since this currently only uses the organ list, it assumes ALL objects have the XRGrabInteractable component.
+        for (int i = 0; i < renderers.Length; i++) // Since this currently only uses the organ list, it assumes ALL objects have the XRGrabInteractable component.
         {
-            gameObjects[i].GetComponent<XRGrabInteractable>().AddInteractionLayer(InteractionLayer.Default);
+            renderers[i].GetComponent<XRGrabInteractable>().AddInteractionLayer(InteractionLayer.Default);
 
             Material material, opaqueMaterial, managedMaterial;
             opaqueMaterial = material = materials[i];
-            managedMaterial = materialManager.managedMaterials[(ManagedObjects)Enum.Parse(typeof(ManagedObjects), gameObjects[i].GetComponent<IOrgan>().Organ.ToString())];
+            managedMaterial = materialManager.managedMaterials[(ManagedObjects)Enum.Parse(typeof(ManagedObjects), renderers[i].GetComponent<IOrgan>().Organ.ToString())];
 
             material = managedMaterial;
             managedMaterial = opaqueMaterial;
         }
     }
-    private IEnumerator FadeInObject(GameObject gameObject)
+    private IEnumerator FadeInObject(Renderer renderer)
     {
-        GetFadingVariables(in gameObject, out float currentAlpha, out Material material, out Color color);
+        GetFadingVariables(in renderer, out float currentAlpha, out Material material, out Color color);
 
         while (currentAlpha != 1)
         {
@@ -194,7 +195,7 @@ public class VisibilityManager : MonoBehaviour
             yield return fadeUpdateInterval;
         }
 
-        if (gameObject.TryGetComponent(out XRGrabInteractable interactable)) interactable.AddInteractionLayer(InteractionLayer.Default);
+        if (renderer.TryGetComponent(out XRGrabInteractable interactable)) interactable.AddInteractionLayer(InteractionLayer.Default);
     }
 
     private void Awake()
@@ -203,8 +204,8 @@ public class VisibilityManager : MonoBehaviour
 
         traySocket = GameObject.FindGameObjectWithTag(Tag.Tray).GetComponent<XRSocketInteractor>();
 
-        torso = GameObject.FindGameObjectWithTag(Tag.Torso);
-        scalpel = GameObject.FindGameObjectWithTag(Tag.Scalpel);
+        torso = GetRendererByTag(Tag.Torso);
+        scalpel = GetRendererByTag(Tag.Scalpel);
 
         StartCoroutine(FadeOutObject(scalpel));
     }

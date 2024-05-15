@@ -7,16 +7,17 @@ namespace Organs
     [RequireComponent(typeof(OrganRecaller))]
     public class XROrganSocketInteractor : XRSocketInteractor, IOrgan
     {
-        public static HashSet<GameObject> idleOrgans = new();
+        public static HashSet<Renderer> idleOrgans = new();
         [field: SerializeField] public OrganType Organ { get; set; }
         public bool IsGrabbed { get; set; } // Will not get used, is just required to be implemented because of the interface, perhaps there should be an IGrabbable Interface?
 
+        private Renderer organRenderer;
         private XRGrabInteractable socketedInteractable;
         private IOrgan socketedOrgan;
         private const float time = 0.1f;
 
-        private void MakeOrganIdle(SelectEnterEventArgs _) => idleOrgans.Add(startingSelectedInteractable.gameObject);
-        private void MakeOrganActive(SelectExitEventArgs _) => idleOrgans.Remove(startingSelectedInteractable.gameObject);
+        private void MakeOrganIdle(SelectEnterEventArgs _) => idleOrgans.Add(organRenderer);
+        private void MakeOrganActive(SelectExitEventArgs _) => idleOrgans.Remove(organRenderer);
 
         private void GrabGracePeriod() => socketedOrgan.IsGrabbed = false;
         public void OnGrabbed(SelectEnterEventArgs _) => socketedOrgan.IsGrabbed = true;
@@ -36,6 +37,7 @@ namespace Organs
             socketedOrgan.Organ = Organ;
 
             socketedInteractable = startingSelectedInteractable.GetComponent<XRGrabInteractable>();
+            organRenderer = startingSelectedInteractable.GetComponent<Renderer>();
         }
 
         protected override void Start()
@@ -43,7 +45,7 @@ namespace Organs
             base.Start();
 
             idleOrgans.Clear();
-            idleOrgans.Add(startingSelectedInteractable.gameObject);
+            idleOrgans.Add(organRenderer);
         }
 
         private bool MatchOrgan(IXRInteractable interactable)
