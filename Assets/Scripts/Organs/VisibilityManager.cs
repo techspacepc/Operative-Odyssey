@@ -71,7 +71,8 @@ public class VisibilityManager : MonoBehaviour
 
         foreach (Renderer renderer in renderers)
         {
-            Material material = renderer.GetComponent<Renderer>().material; // Passing in the Material or Renderer as parameter would be more efficient.
+            Material material = renderer.material;
+
             materials.Add(material);
             colors.Add(material.color);
 
@@ -80,9 +81,9 @@ public class VisibilityManager : MonoBehaviour
 
         currentAlpha = colors[0].a; // Uses colors of index 0 since all objects will have the same alpha anyway - they all fade at the same time.
     }
-    private void GetFadingVariables(in Renderer gameObject, out float currentAlpha, out Material material, out Color color)
+    private void GetFadingVariables(in Renderer renderer, out float currentAlpha, out Material material, out Color color)
     {
-        material = gameObject.GetComponent<Renderer>().material; // Passing in the Material or Renderer as parameter would be more efficient.
+        material = renderer.material;
         color = material.color;
 
         currentAlpha = color.a;
@@ -124,14 +125,17 @@ public class VisibilityManager : MonoBehaviour
 
         for (int i = 0; i < renderers.Length; i++) // Since this currently only uses the organ list, it assumes ALL objects have the XRGrabInteractable component.
         {
-            renderers[i].GetComponent<XRGrabInteractable>().RemoveInteractionLayer(InteractionLayer.Default);
+            if (currentAlpha < 1) break;
 
-            Material material, opaqueMaterial, managedMaterial;
-            opaqueMaterial = material = materials[i];
-            managedMaterial = materialManager.managedMaterials[(ManagedObjects)Enum.Parse(typeof(ManagedObjects), renderers[i].GetComponent<IOrgan>().Organ.ToString())];
+            Renderer renderer = renderers[i];
+            Material previousMaterial = materials[i];
 
-            material = managedMaterial;
-            managedMaterial = opaqueMaterial;
+            renderer.GetComponent<XRGrabInteractable>().RemoveInteractionLayer(InteractionLayer.Default);
+
+            ManagedObjects managedMaterial = (ManagedObjects)Enum.Parse(typeof(ManagedObjects), renderer.GetComponent<IOrgan>().Organ.ToString());
+
+            renderer.material = materials[i] = materialManager.managedMaterials[managedMaterial];
+            materialManager.managedMaterials[managedMaterial] = previousMaterial;
         }
 
         while (currentAlpha != 0)
@@ -174,14 +178,14 @@ public class VisibilityManager : MonoBehaviour
 
         for (int i = 0; i < renderers.Length; i++) // Since this currently only uses the organ list, it assumes ALL objects have the XRGrabInteractable component.
         {
-            renderers[i].GetComponent<XRGrabInteractable>().AddInteractionLayer(InteractionLayer.Default);
+            Renderer renderer = renderers[i];
 
-            Material material, opaqueMaterial, managedMaterial;
-            opaqueMaterial = material = materials[i];
-            managedMaterial = materialManager.managedMaterials[(ManagedObjects)Enum.Parse(typeof(ManagedObjects), renderers[i].GetComponent<IOrgan>().Organ.ToString())];
+            renderer.GetComponent<XRGrabInteractable>().AddInteractionLayer(InteractionLayer.Default);
 
-            material = managedMaterial;
-            managedMaterial = opaqueMaterial;
+            ManagedObjects managedMaterial = (ManagedObjects)Enum.Parse(typeof(ManagedObjects), renderer.GetComponent<IOrgan>().Organ.ToString());
+
+            renderer.material = materialManager.managedMaterials[managedMaterial];
+            materialManager.managedMaterials[managedMaterial] = materials[i];
         }
     }
     private IEnumerator FadeInObject(Renderer renderer)
