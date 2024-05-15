@@ -1,5 +1,14 @@
 using UnityEngine.XR.Interaction.Toolkit;
 
+namespace Constants
+{
+    public static class Const
+    {
+        public const string MaterialInstance = " (Instance)";
+        public const string MaterialTransparant = "Transparant";
+    }
+}
+
 namespace Tags
 {
     public static class Tag

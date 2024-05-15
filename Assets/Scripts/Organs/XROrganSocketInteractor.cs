@@ -33,6 +33,8 @@ namespace Organs
         {
             base.Awake();
 
+            idleOrgans.Clear();
+
             socketedOrgan = startingSelectedInteractable.gameObject.AddComponent<OrganIdentifier>().GetComponent<IOrgan>();
             socketedOrgan.Organ = Organ;
 
@@ -44,7 +46,6 @@ namespace Organs
         {
             base.Start();
 
-            idleOrgans.Clear();
             idleOrgans.Add(organRenderer);
         }
 

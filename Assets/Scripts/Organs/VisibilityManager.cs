@@ -10,16 +10,6 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class VisibilityManager : MonoBehaviour
 {
-    public enum ManagedObjects
-    {
-        Torso,
-        Scalpel,
-        // Due to retrictiveness of enums; them being a compile-time member, I've to write out the Organs from the organ enum here as well.
-        Heart,
-        Kidney,
-        Eye
-    }
-
     private MaterialManager materialManager;
 
     private Renderer torso, scalpel;
@@ -128,14 +118,13 @@ public class VisibilityManager : MonoBehaviour
             if (currentAlpha < 1) break;
 
             Renderer renderer = renderers[i];
-            Material previousMaterial = materials[i];
+            Material material = materials[i];
+            string materialName = materialManager.GetBaseMaterialName(material.name);
 
             renderer.GetComponent<XRGrabInteractable>().RemoveInteractionLayer(InteractionLayer.Default);
 
-            ManagedObjects managedMaterial = (ManagedObjects)Enum.Parse(typeof(ManagedObjects), renderer.GetComponent<IOrgan>().Organ.ToString());
-
-            renderer.material = materials[i] = materialManager.managedMaterials[managedMaterial];
-            materialManager.managedMaterials[managedMaterial] = previousMaterial;
+            renderer.material = materials[i] = materialManager.managedMaterials[materialName];
+            materialManager.managedMaterials[materialName] = material;
         }
 
         while (currentAlpha != 0)
@@ -179,13 +168,13 @@ public class VisibilityManager : MonoBehaviour
         for (int i = 0; i < renderers.Length; i++) // Since this currently only uses the organ list, it assumes ALL objects have the XRGrabInteractable component.
         {
             Renderer renderer = renderers[i];
+            Material material = materials[i];
+            string materialName = materialManager.GetBaseMaterialName(material.name);
 
             renderer.GetComponent<XRGrabInteractable>().AddInteractionLayer(InteractionLayer.Default);
 
-            ManagedObjects managedMaterial = (ManagedObjects)Enum.Parse(typeof(ManagedObjects), renderer.GetComponent<IOrgan>().Organ.ToString());
-
-            renderer.material = materialManager.managedMaterials[managedMaterial];
-            materialManager.managedMaterials[managedMaterial] = materials[i];
+            renderer.material = materialManager.managedMaterials[materialName];
+            materialManager.managedMaterials[materialName] = material;
         }
     }
     private IEnumerator FadeInObject(Renderer renderer)
@@ -210,7 +199,9 @@ public class VisibilityManager : MonoBehaviour
 
         torso = GetRendererByTag(Tag.Torso);
         scalpel = GetRendererByTag(Tag.Scalpel);
-
+    }
+    private void Start()
+    {
         StartCoroutine(FadeOutObject(scalpel));
     }
 
