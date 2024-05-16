@@ -140,6 +140,15 @@ public class VisibilityManager : MonoBehaviour
 
         if (renderer.TryGetComponent(out XRGrabInteractable interactable)) interactable.RemoveInteractionLayer(InteractionLayer.Default);
 
+        if (currentAlpha == 1)
+        {
+            Material previousMaterial = material;
+            string materialName = materialManager.GetBaseMaterialName(material.name);
+
+            renderer.material = material = materialManager.managedMaterials[materialName];
+            materialManager.managedMaterials[materialName] = previousMaterial;
+        }
+
         while (currentAlpha != 0)
         {
             currentAlpha = UpdateCurrentAlphaBy(currentAlpha, alphaDecrementor, material, color);
@@ -187,6 +196,11 @@ public class VisibilityManager : MonoBehaviour
 
             yield return fadeUpdateInterval;
         }
+
+        string materialName = materialManager.GetBaseMaterialName(material.name);
+
+        renderer.material = materialManager.managedMaterials[materialName];
+        materialManager.managedMaterials[materialName] = material;
 
         if (renderer.TryGetComponent(out XRGrabInteractable interactable)) interactable.AddInteractionLayer(InteractionLayer.Default);
     }
