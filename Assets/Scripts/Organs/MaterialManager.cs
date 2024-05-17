@@ -11,8 +11,8 @@ public class MaterialManager : MonoBehaviour
     public Dictionary<string, Material> managedMaterials = new();
 
     private string RemoveInstanceNaming(string name) => name.Replace(Const.MaterialInstance, string.Empty);
-    private string RemoveTransparantNaming(string name) => name.Replace(Const.MaterialTransparant, string.Empty);
-    public string GetBaseMaterialName(string name) => RemoveTransparantNaming(RemoveInstanceNaming(name)).Trim();
+    private string RemoveTransparentNaming(string name) => name.Replace(Const.MaterialTransparent, string.Empty);
+    public string GetBaseMaterialName(string name) => RemoveTransparentNaming(RemoveInstanceNaming(name)).Trim();
 
     private Material FindMaterialByTag(string tag)
         => GameObject.FindGameObjectWithTag(tag).GetComponent<Renderer>().sharedMaterial;
@@ -38,7 +38,7 @@ public class MaterialManager : MonoBehaviour
     {
         CreateVisibilityManagedMaterialsList(out List<string> visibilityManagedMaterials);
 
-        string materialName = RemoveTransparantNaming(material.name);
+        string materialName = RemoveTransparentNaming(material.name);
         bool matchFound = false;
         foreach (string managedMaterialName in visibilityManagedMaterials)
         {
@@ -53,8 +53,8 @@ public class MaterialManager : MonoBehaviour
                 $" Please ensure that the material name matches exactly one of the following material names: {string.Join(", ", visibilityManagedMaterials)}."); ;
     }
 
-    [ContextMenu(nameof(CreateTransparantMaterials))]
-    private void CreateTransparantMaterials() // You do actually have to change the materials to transparant manually, afaik you cannot do that through code.
+    [ContextMenu(nameof(CreateTransparentMaterials))]
+    private void CreateTransparentMaterials() // You do actually have to change the materials to transparent manually, afaik you cannot do that through code.
     {
         List<Material> materials = new()
         {
@@ -75,7 +75,7 @@ public class MaterialManager : MonoBehaviour
             if (exception != null) throw exception;
 
             Material copiedMaterial = new(material);
-            AssetDatabase.CreateAsset(copiedMaterial, $"{Path.ResourcesFull}/{copiedMaterial.name}{Const.MaterialTransparant}.asset");
+            AssetDatabase.CreateAsset(copiedMaterial, $"{Path.ResourcesFull}/{copiedMaterial.name}{Const.MaterialTransparent}.asset");
         }
         AssetDatabase.SaveAssets();
     }
@@ -89,7 +89,7 @@ public class MaterialManager : MonoBehaviour
             MissingReferenceException exception = MissingManagedMaterialReference(material);
             if (exception != null) throw exception;
 
-            managedMaterials[RemoveTransparantNaming(material.name)] = material;
+            managedMaterials[RemoveTransparentNaming(material.name)] = material;
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Constants
     public static class Const
     {
         public const string MaterialInstance = " (Instance)";
-        public const string MaterialTransparant = "Transparant";
+        public const string MaterialTransparent = "Transparent";
     }
 }
 
@@ -32,8 +32,8 @@ namespace Pathing
 {
     public static class Path
     {
-        public const string ResourcesFull = "Assets/Resources/TransparantMaterials";
-        public const string ResourcesShort = "TransparantMaterials";
+        public const string ResourcesFull = "Assets/Resources/TransparentMaterials";
+        public const string ResourcesShort = "TransparentMaterials";
     }
 }
 
