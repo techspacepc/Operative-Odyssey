@@ -10,6 +10,10 @@ public class MaterialManager : MonoBehaviour
 {
     public Dictionary<string, Material> managedMaterials = new();
 
+    // These methods are for removing additions to the material name. This is needed so that the key passed into the dictionary remains consistent.
+    // RemoveInstanceNaming is specifically for when accessing .material property, which creates an instance of a material. Unity adds " (Instance)" To the material when this happens.
+    // RemoveTransparantNaming is for the generated materials, "Transparant" is added to all MaterialManager generated materials.
+    // Lastly, GetBaseMaterialName combines both of these methods with addition of the Trim Method to *ensure* it'll *always* match the correct key.
     private string RemoveInstanceNaming(string name) => name.Replace(Const.MaterialInstance, string.Empty);
     private string RemoveTransparentNaming(string name) => name.Replace(Const.MaterialTransparent, string.Empty);
     public string GetBaseMaterialName(string name) => RemoveTransparentNaming(RemoveInstanceNaming(name)).Trim();

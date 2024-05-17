@@ -8,6 +8,13 @@ using Tags;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
+/// <summary>
+/// This class uses method overloading. Therefore, several methods do have the same name.
+/// The difference and reason why it's used here is to differantiate singular objects and arrays of objects for their fading animation.
+/// This is important due to performance reasons, but it also benefits flexibility reasons.
+/// To not get confused of whether one method is singular or plural, just check for the array indicator [].
+/// In general, the singular method gets used for the Scalpel and Torso, and the plural gets used for the Organs.
+/// </summary>
 public class VisibilityManager : MonoBehaviour
 {
     private MaterialManager materialManager;
