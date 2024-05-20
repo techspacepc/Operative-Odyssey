@@ -44,7 +44,7 @@ public class WhiteboardController : MonoBehaviour
         rightArrow.color = nextPage >= totalPages ? Color.gray : defaultColor;
         leftArrow.color = prevPage < 0 ? Color.gray : defaultColor;
 
-        pageNumberingText.text = (nextPage + "/" + organData.pages.Length); //next page is used here as otherwise page 0 exists, it works this way I swear - Dirk
+        pageNumberingText.text = $"{nextPage} / {organData.pages.Length}"; //next page is used here as otherwise page 0 exists, it works this way I swear - Dirk
 
         organData = organList[currentOrganNumber];
         OrganInfoData.OrganInfoEntry currentOrganPage = organData.pages[currentPageNumber];
