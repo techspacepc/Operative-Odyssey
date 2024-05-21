@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StartHeartTour : MonoBehaviour
+public class TourHandler : MonoBehaviour
 {
-    [SerializeField] private GameObject tour;
+    [SerializeField] private GameObject heartTour;
+    [SerializeField] private GameObject kidneyTour;
+    [SerializeField] private GameObject eyeTour;
     [SerializeField] private GameObject museum;
     [SerializeField] private GameObject player;
-    private const float speed = 5f; // Speed at which the object moves
     private Collider colliderGate;
     private Vector3 newPosition = new Vector3(0, 0, 0);
 
@@ -20,7 +21,7 @@ public class StartHeartTour : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            tour.SetActive(true);
+            heartTour.SetActive(true);
             museum.SetActive(false);
 
             colliderGate.enabled = false;
@@ -39,12 +40,18 @@ public class StartHeartTour : MonoBehaviour
 
     public void EndTour()
     {
-        tour.SetActive(false);
+        heartTour.SetActive(false);
+        kidneyTour.SetActive(false);
+        eyeTour.SetActive(false);
         museum.SetActive(true);
 
         //Debug.Log("BACK TO MUSUEM");
         player.transform.position = newPosition;
 
+        Invoke(nameof(EnableCollider), 0.1f);
+    }
+
+    private void EnableCollider(){
         colliderGate.enabled = true;
     }
 }
