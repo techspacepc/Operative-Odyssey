@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class WhiteboardController : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshProUGUI pageOrganText, pageTitleText, pageInfoText;
+    private TextMeshProUGUI pageOrganText, pageTitleText, pageInfoText, pageNumberingText;
     [SerializeField]
-    private Image pageImageBox;
+    private Image pageImageBox, rightArrow, leftArrow;
     [SerializeField]
     private List<OrganInfoData> organList = new();
 
@@ -18,13 +18,7 @@ public class WhiteboardController : MonoBehaviour
     private void Start()
     {
         // TODO: add in a default explainer page before showing the organs.
-        organData = organList[currentOrganNumber];
-        OrganInfoData.OrganInfoEntry currentOrganPage = organData.pages[currentPageNumber];
-
-        pageOrganText.text = organData.OrganName;
-        pageTitleText.text = currentOrganPage.PageTitle;
-        pageInfoText.text = currentOrganPage.PageInfo;
-        pageImageBox.sprite = currentOrganPage.PageImage;
+        UpdateOrganInfo();
     }
 
     //top button calls upon this. its rather hard coded rn, can polish it in the future.
@@ -44,6 +38,16 @@ public class WhiteboardController : MonoBehaviour
         organData = organList[currentOrganNumber];
         OrganInfoData.OrganInfoEntry currentOrganPage = organData.pages[currentPageNumber];
 
+        Color defaultColor = Color.white;
+        int totalPages = organData.pages.Length;
+        int nextPage = currentPageNumber + 1;
+        int prevPage = currentPageNumber - 1;
+
+        rightArrow.color = nextPage >= totalPages ? Color.gray : defaultColor;
+        leftArrow.color = prevPage < 0 ? Color.gray : defaultColor;
+
+        pageNumberingText.text = $"{nextPage} / {organData.pages.Length}"; //next page is used here as otherwise page 0 exists, it works this way I swear - Dirk
+
         pageOrganText.text = organData.OrganName;
         pageTitleText.text = currentOrganPage.PageTitle;
         pageInfoText.text = currentOrganPage.PageInfo;
@@ -53,14 +57,20 @@ public class WhiteboardController : MonoBehaviour
     public void PageUp()
     {
         //check to not go beyond max page of current organ.
-        if ((organData.pages.Length - 1) > currentPageNumber) currentPageNumber++;
-        UpdateOrganInfo();
+        if ((organData.pages.Length - 1) > currentPageNumber)
+        {
+            currentPageNumber++;
+            UpdateOrganInfo();
+        }
     }
 
     public void PageDown()
     {
         //check to not go beyond min page of current organ.
-        if (currentPageNumber > 0) currentPageNumber--;
-        UpdateOrganInfo();
+        if (currentPageNumber > 0)
+        {
+            currentPageNumber--;
+            UpdateOrganInfo();
+        }
     }
 }
