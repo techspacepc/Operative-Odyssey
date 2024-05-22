@@ -8,6 +8,8 @@ public class HeartFunFacts : MonoBehaviour
     public List<string> heartFacts;
     public List<string> kidneyFacts;
     public List<string> eyeFacts;
+    public List<string> liverFacts;
+
     [SerializeField] private TextMeshPro signText;
 
     private void Start()
@@ -50,6 +52,15 @@ public class HeartFunFacts : MonoBehaviour
         eyeFacts.Add("The older we get, the less tears we produce");
         eyeFacts.Add("You blink about 15-20 times in a minute");
         eyeFacts.Add("Only one sixth of your eyeball is visible");
+
+        //fun facts liver
+        liverFacts.Add("The liver can regenerate itself");
+        liverFacts.Add("The liver is the largest solid internal organ in the body");
+        liverFacts.Add("The liver can produce heat");
+        liverFacts.Add("The liver can perform 500 different functions");
+        liverFacts.Add("When you gain fat, the liver also does get more fat");
+        liverFacts.Add("Without a liver a human does not survive alcohol consumption");
+        liverFacts.Add("Without a liver, most medicine would be useless");
     }
 
     public void ChangeFunFactHeart()
@@ -87,6 +98,20 @@ public class HeartFunFacts : MonoBehaviour
 
             int randomIndex = Random.Range(0, eyeFacts.Count);
             signText.text = eyeFacts[randomIndex];
+
+            if(signText.text != currentText){
+                break;
+            }
+        }
+    }
+
+    public void ChangeFunFactLiver()
+    {
+        for (;;){
+            string currentText = signText.text;
+
+            int randomIndex = Random.Range(0, liverFacts.Count);
+            signText.text = liverFacts[randomIndex];
 
             if(signText.text != currentText){
                 break;
