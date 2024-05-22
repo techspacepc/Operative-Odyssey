@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1447985777488399551}
-  - component: {fileID: 7051682607125958336}
+  - component: {fileID: 4941405895742577026}
   - component: {fileID: 1512719722277720774}
   m_Layer: 0
   m_Name: VisibilityManager
@@ -33,7 +33,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7051682607125958336
+--- !u!114 &4941405895742577026
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,7 +42,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1778165457524334062}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36a91c7e23bdb2542934e50ad84d6fe8, type: 3}
+  m_Script: {fileID: 11500000, guid: cd6fadb1f17e3c940898c1882e1d5d54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1512719722277720774
