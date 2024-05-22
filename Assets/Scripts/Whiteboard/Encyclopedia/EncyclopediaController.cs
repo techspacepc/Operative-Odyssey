@@ -18,7 +18,6 @@ public class WhiteboardController : MonoBehaviour
     private void Start()
     {
         // TODO: add in a default explainer page before showing the organs.
-        organData = organList[currentOrganNumber];
         UpdateOrganInfo();
     }
 
@@ -58,14 +57,20 @@ public class WhiteboardController : MonoBehaviour
     public void PageUp()
     {
         //check to not go beyond max page of current organ.
-        if ((organData.pages.Length - 1) > currentPageNumber) currentPageNumber++;
-        UpdateOrganInfo();
+        if ((organData.pages.Length - 1) > currentPageNumber)
+        {
+            currentPageNumber++;
+            UpdateOrganInfo();
+        }
     }
 
     public void PageDown()
     {
         //check to not go beyond min page of current organ.
-        if (currentPageNumber > 0) currentPageNumber--;
-        UpdateOrganInfo();
+        if (currentPageNumber > 0)
+        {
+            currentPageNumber--;
+            UpdateOrganInfo();
+        }
     }
 }
