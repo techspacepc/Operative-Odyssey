@@ -17,8 +17,6 @@ public class SkeletonCollider : MonoBehaviour
             if(!audioSource.isPlaying){
                 audioSource.Play();
             }
-
-            Debug.Log("TRIGGER");
         }
     }
 }

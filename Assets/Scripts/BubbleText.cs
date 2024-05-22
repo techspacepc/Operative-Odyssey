@@ -17,10 +17,6 @@ public class BubbleText : MonoBehaviour
         }
     }
 
-    void OnTriggerStay(Collider other){
-
-    }
-
     void OnTriggerExit(Collider other){
         text.SetActive(false);
         bubbleRenderer.material = bubbleMaterial;

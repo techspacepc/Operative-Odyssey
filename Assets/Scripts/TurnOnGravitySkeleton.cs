@@ -9,7 +9,6 @@ public class TurnOnGravitySkeleton : MonoBehaviour
     private void TurnOffKinematic()
     {
         rigidBody.isKinematic = false;
-        print("rb kinematic set to false");
     }
 
     private void Awake()

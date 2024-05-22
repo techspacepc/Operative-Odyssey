@@ -25,17 +25,9 @@ public class TourHandler : MonoBehaviour
             museum.SetActive(false);
 
             colliderGate.enabled = false;
-
-            //Debug.Log("COLLIDING");
         }
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-           
-        }
+        Debug.Log("ENTERING");
     }
 
     public void EndTour()
@@ -45,7 +37,6 @@ public class TourHandler : MonoBehaviour
         eyeTour.SetActive(false);
         museum.SetActive(true);
 
-        //Debug.Log("BACK TO MUSUEM");
         player.transform.position = newPosition;
 
         Invoke(nameof(EnableCollider), 0.1f);
