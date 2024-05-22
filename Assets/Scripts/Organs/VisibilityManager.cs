@@ -3,6 +3,7 @@ using Organs;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Tags;
 using UnityEngine;
@@ -24,7 +25,8 @@ public class VisibilityManager : MonoBehaviour
     private XRSocketInteractor traySocket;
 
     private const int fadeTime = 2;
-    private const float _fadeUpdateInterval = 0.1f;
+    [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+    private const float _fadeUpdateInterval = 0.05f;
     private readonly WaitForSeconds fadeUpdateInterval = new(_fadeUpdateInterval);
     private const float alphaDecrementor = -1f / (fadeTime / _fadeUpdateInterval);
     private const float alphaIncrementor = 1f / (fadeTime / _fadeUpdateInterval);
