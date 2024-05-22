@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class HeartFunFacts : MonoBehaviour
+public class OrganFunFacts : MonoBehaviour
 {
     public List<string> heartFacts;
     public List<string> kidneyFacts;
