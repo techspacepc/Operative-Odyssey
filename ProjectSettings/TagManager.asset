@@ -7,8 +7,9 @@ TagManager:
   - Anchor
   - Scalpel
   - Tray
-  - Laptop
   - Bubble
+  - Torso
+  - Organ
   layers:
   - Default
   - TransparentFX
