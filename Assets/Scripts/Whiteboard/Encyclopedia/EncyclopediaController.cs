@@ -36,6 +36,9 @@ public class WhiteboardController : MonoBehaviour
     /// </summary>
     private void UpdateOrganInfo()
     {
+        organData = organList[currentOrganNumber];
+        OrganInfoData.OrganInfoEntry currentOrganPage = organData.pages[currentPageNumber];
+
         Color defaultColor = Color.white;
         int totalPages = organData.pages.Length;
         int nextPage = currentPageNumber + 1;
@@ -45,9 +48,6 @@ public class WhiteboardController : MonoBehaviour
         leftArrow.color = prevPage < 0 ? Color.gray : defaultColor;
 
         pageNumberingText.text = $"{nextPage} / {organData.pages.Length}"; //next page is used here as otherwise page 0 exists, it works this way I swear - Dirk
-
-        organData = organList[currentOrganNumber];
-        OrganInfoData.OrganInfoEntry currentOrganPage = organData.pages[currentPageNumber];
 
         pageOrganText.text = organData.OrganName;
         pageTitleText.text = currentOrganPage.PageTitle;
