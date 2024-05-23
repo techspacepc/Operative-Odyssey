@@ -1,17 +1,28 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RotateTowardsPlayer : MonoBehaviour
 {
     [SerializeField] private Transform player;
-
-    private const float offset = 0.5f;
-
+    [SerializeField] private float offsetNextToHeartRight = 0.01f;
+    [SerializeField] private float offsetNextToHeartLeft = 0.2f;
     private void Update()
     {
-        Vector3 direction = player.position - transform.position;
+        //get bubble
+        Transform bubble = transform.parent;
 
-        direction.y = direction.x + offset;
+        //get heart
+        Transform heart = bubble.parent;
 
-        transform.rotation = Quaternion.LookRotation(direction);
+        //left or right from the heart position based on z axis
+        if(bubble.position.z > heart.position.z){
+            //change text position based on heart and bubble position
+            Vector3 newPosition = new Vector3(bubble.position.x, bubble.position.y, bubble.position.z + offsetNextToHeartRight);
+            transform.position = newPosition;
+        }else{
+            //change text position based on heart and bubble position
+            Vector3 newPosition = new Vector3(bubble.position.x, bubble.position.y, bubble.position.z - offsetNextToHeartLeft);
+            transform.position = newPosition;
+        }
     }
 }

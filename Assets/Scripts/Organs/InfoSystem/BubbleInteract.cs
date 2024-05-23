@@ -7,8 +7,8 @@ using System.Collections.Generic;
 
 public class BubbleInteract : MonoBehaviour
 {
-    //public static event Action<string> OnBubbleInteract;
     private GameObject[] allBubbles;
+    [SerializeField] private TextMeshPro signText;
     private new Renderer renderer;
 
     private Material defaultMaterial;
@@ -36,29 +36,29 @@ public class BubbleInteract : MonoBehaviour
                     //change to default material
                     allBubbles[i].GetComponent<Renderer>().material = defaultMaterial;
                 }
+            }else{
+                signText.text = transform.gameObject.name;
             }
         }
 
         if (textObject.activeSelf){
             //deselect the bubble
             renderer.material = defaultMaterial;
-            //OnBubbleInteract(name);
             textObject.SetActive(false);
+
+            //disable text next to bubble
+            TextMeshPro text = textObject.GetComponent<TextMeshPro>();
+            text.enabled = false;
         }else{
             //select the bubble
             renderer.material = selectedMaterial;
-            //OnBubbleInteract(name);
             textObject.SetActive(true);
+
+            //disable text next to bubble
+            TextMeshPro text = textObject.GetComponent<TextMeshPro>();
+            text.enabled = false;
         }
     }
-
-    /*
-    private void ChangeToDefaultMaterial(string interactedBubble)
-    {
-        if (interactedBubble == name) return;
-        renderer.material = defaultMaterial;
-    }
-    */
 
     private void Awake()
     {
@@ -82,18 +82,17 @@ public class BubbleInteract : MonoBehaviour
 
     private void Start(){
         //get all bubbles
-        allBubbles = BubbleHandler.bubbleArray;
+        BubbleHandler bubbleHandler = transform.parent.GetComponent<BubbleHandler>();
+        allBubbles = bubbleHandler.bubbleArray;
     }
 
     private void OnEnable()
     {
         interactable.selectEntered.AddListener(BubbleInteracted);
-        //OnBubbleInteract += ChangeToDefaultMaterial;
     }
 
     private void OnDisable()
     {
         interactable.selectEntered.RemoveListener(BubbleInteracted);
-        //OnBubbleInteract -= ChangeToDefaultMaterial;
     }
 }

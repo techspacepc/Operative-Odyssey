@@ -7,16 +7,17 @@ TagManager:
   - Anchor
   - Scalpel
   - Tray
+  - Bubble
   - Torso
   - Organ
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Glass Boxes
   - Water
   - UI
-  - 
+  - Bloom
   - 
   - 
   - 
