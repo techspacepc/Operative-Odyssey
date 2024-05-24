@@ -57,6 +57,7 @@ public class MaterialManager : MonoBehaviour
                 $" Please ensure that the material name matches exactly one of the following material names: {string.Join(", ", visibilityManagedMaterials)}."); ;
     }
 
+#if UNITY_EDITOR
     [ContextMenu(nameof(CreateTransparentMaterials))]
     private void CreateTransparentMaterials() // You do actually have to change the materials to transparent manually, afaik you cannot do that through code.
     {
@@ -83,6 +84,7 @@ public class MaterialManager : MonoBehaviour
         }
         AssetDatabase.SaveAssets();
     }
+#endif
 
     private void Awake()
     {
