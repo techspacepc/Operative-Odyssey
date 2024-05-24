@@ -8,10 +8,9 @@ public class TourHandler : MonoBehaviour
 {
     [SerializeField] private GameObject museumParent;
     [SerializeField] private GameObject[] tourParents;
+    private CharacterController playerController;
 
     private XRSimpleInteractable[] tourExitButtons;
-
-    private Transform playerTransform;
 
     private Vector3 resetPosition = new(1, 0, 1);
 
@@ -40,9 +39,11 @@ public class TourHandler : MonoBehaviour
         foreach (GameObject tour in tourParents)
             tour.SetActive(false);
 
-        museumParent.SetActive(true);
+        playerController.enabled = false;
+        playerController.transform.position = resetPosition;
+        playerController.enabled = true;
 
-        playerTransform.position = resetPosition;
+        museumParent.SetActive(true);
 
         currentTour = default;
 
@@ -51,7 +52,7 @@ public class TourHandler : MonoBehaviour
 
     private void Awake()
     {
-        playerTransform = GameObject.FindGameObjectWithTag(Tag.Player).GetComponent<Transform>();
+        playerController = GameObject.FindGameObjectWithTag(Tag.Player).GetComponent<CharacterController>();
 
         museumParent.GetComponentInChildren<SphereCollider>().AddComponent<DelegatePortalCollision>();
 
