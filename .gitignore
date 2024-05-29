@@ -11,7 +11,9 @@
 /[Uu]ser[Ss]ettings/
 
 # Custom
-Assets/[Ii]mport/
+Assets/Import
+Assets/Resources/TransparentMaterials
+Assets/UnityXR/Samples/XR Interaction Toolkit/2.5.4/XR Device Simulator
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
