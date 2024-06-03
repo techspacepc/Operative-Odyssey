@@ -8,6 +8,7 @@ public class TourHandler : MonoBehaviour
 {
     [SerializeField] private GameObject museumParent;
     [SerializeField] private GameObject[] tourParents;
+    [SerializeField] private GameObject vessels;
     private CharacterController playerController;
 
     private XRSimpleInteractable[] tourExitButtons;
@@ -24,6 +25,8 @@ public class TourHandler : MonoBehaviour
         tourParents[currentTour].SetActive(true);
 
         DelegatePortalCollision.OnPortalEntered += ContinueTour;
+
+        vessels.SetActive(true);
     }
 
     private void ContinueTour()
@@ -44,6 +47,7 @@ public class TourHandler : MonoBehaviour
         playerController.enabled = true;
 
         museumParent.SetActive(true);
+        vessels.SetActive(false);
 
         currentTour = default;
 
