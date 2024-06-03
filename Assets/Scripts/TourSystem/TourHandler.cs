@@ -8,7 +8,7 @@ public class TourHandler : MonoBehaviour
 {
     [SerializeField] private GameObject museumParent;
     [SerializeField] private GameObject[] tourParents;
-    [SerializeField] private GameObject vessels;
+    [SerializeField] private GameObject tourParent;
     private CharacterController playerController;
 
     private XRSimpleInteractable[] tourExitButtons;
@@ -22,11 +22,11 @@ public class TourHandler : MonoBehaviour
         DelegatePortalCollision.OnPortalEntered -= StartTour;
 
         museumParent.SetActive(false);
-        tourParents[currentTour].SetActive(true);
+        //tourParents[currentTour].SetActive(true);
 
-        DelegatePortalCollision.OnPortalEntered += ContinueTour;
+        //DelegatePortalCollision.OnPortalEntered += ContinueTour;
 
-        vessels.SetActive(true);
+        tourParent.SetActive(true);
     }
 
     private void ContinueTour()
@@ -37,7 +37,7 @@ public class TourHandler : MonoBehaviour
 
     private void ExitTour(SelectEnterEventArgs _)
     {
-        DelegatePortalCollision.OnPortalEntered -= ContinueTour;
+        //DelegatePortalCollision.OnPortalEntered -= ContinueTour;
 
         foreach (GameObject tour in tourParents)
             tour.SetActive(false);
@@ -47,7 +47,7 @@ public class TourHandler : MonoBehaviour
         playerController.enabled = true;
 
         museumParent.SetActive(true);
-        vessels.SetActive(false);
+        tourParent.SetActive(false);
 
         currentTour = default;
 
@@ -85,7 +85,7 @@ public class TourHandler : MonoBehaviour
     private void OnDisable()
     {
         DelegatePortalCollision.OnPortalEntered -= StartTour;
-        DelegatePortalCollision.OnPortalEntered -= ContinueTour;
+        //DelegatePortalCollision.OnPortalEntered -= ContinueTour;
 
         foreach (XRSimpleInteractable interactable in tourExitButtons)
             interactable.selectEntered.RemoveListener(ExitTour);
