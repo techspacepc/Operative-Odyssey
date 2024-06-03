@@ -14,19 +14,24 @@ public class TourHandler : MonoBehaviour
     private XRSimpleInteractable[] tourExitButtons;
 
     private Vector3 resetPosition = new(1, 0, 1);
+    private Vector3 enterTourPosition = new(26.1000004f,0f,-37.2999992f);
 
     private int currentTour;
 
     private void StartTour()
     {
         DelegatePortalCollision.OnPortalEntered -= StartTour;
-
-        museumParent.SetActive(false);
         //tourParents[currentTour].SetActive(true);
 
         //DelegatePortalCollision.OnPortalEntered += ContinueTour;
 
-        tourParent.SetActive(true);
+        //teleport player
+        playerController.enabled = false;
+        playerController.transform.localPosition = enterTourPosition;
+        playerController.enabled = true;
+
+        //tourParent.SetActive(true);
+        //museumParent.SetActive(false);
     }
 
     private void ContinueTour()
@@ -39,15 +44,15 @@ public class TourHandler : MonoBehaviour
     {
         //DelegatePortalCollision.OnPortalEntered -= ContinueTour;
 
-        foreach (GameObject tour in tourParents)
-            tour.SetActive(false);
+        //foreach (GameObject tour in tourParents)
+            //tour.SetActive(false);
 
         playerController.enabled = false;
         playerController.transform.position = resetPosition;
         playerController.enabled = true;
 
-        museumParent.SetActive(true);
-        tourParent.SetActive(false);
+        //museumParent.SetActive(true);
+        //tourParent.SetActive(false);
 
         currentTour = default;
 
