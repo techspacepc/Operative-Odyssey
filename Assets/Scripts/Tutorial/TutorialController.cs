@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using Tags;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -10,8 +12,8 @@ public class TutorialController : MonoBehaviour
     private float startTime;
     [SerializeField] private AudioSource audio;
     [SerializeField] private AudioClip[] audioClips;
-    private readonly Coroutine[] coroutines;
-    private readonly bool coroutineActive = false;
+    private readonly List<Func<IEnumerator>> coroutines = new();
+    private bool coroutineActive = false;
     private bool table = false;
     private void Awake()
     {
@@ -42,15 +44,17 @@ public class TutorialController : MonoBehaviour
 
     public void OnCut(string obj)
     {
-
-        StartCoroutine(OnCut());
+        coroutines.Add(() => OnCut());
+        timing = false;
     }
 
     private IEnumerator OnCut()
     {
+        coroutineActive = true;
         audio.clip = audioClips[8];
         audio.Play();
-
+        yield return new WaitForSeconds(6);
+        coroutineActive = false;
         yield return null;
     }
 
@@ -65,30 +69,40 @@ public class TutorialController : MonoBehaviour
             }
 
         }
+
+        if (!coroutineActive && coroutines.Count != 0)
+        {
+            StartCoroutine(coroutines[0].Invoke());
+            coroutines.RemoveAt(0);
+        }
     }
 
     private void TakeTooLong()
     {
         timing = false;
         startTime = 0;
-        StartCoroutine(TooLong());
+        coroutines.Add(() => TooLong());
     }
 
     private IEnumerator TooLong()
     {
+        coroutineActive = true;
         audio.clip = audioClips[3];
         audio.Play();
+        yield return new WaitForSeconds(9);
+        coroutineActive = false;
         yield return null;
     }
 
     public void OnOrganOnTray(SelectEnterEventArgs args)
     {
-        StartCoroutine(OrganOnTray());
+        coroutines.Add(() => OrganOnTray());
         startTime = 0;
     }
 
     private IEnumerator OrganOnTray()
     {
+        coroutineActive = true;
         audio.clip = audioClips[4];
         audio.Play();
         yield return new WaitForSeconds(2);
@@ -97,7 +111,8 @@ public class TutorialController : MonoBehaviour
         yield return new WaitForSeconds(6);
         audio.clip = audioClips[6];
         audio.Play();
-
+        yield return new WaitForSeconds(5);
+        coroutineActive = false;
         yield return null;
     }
 
@@ -109,7 +124,7 @@ public class TutorialController : MonoBehaviour
                 if (!table)
                 {
                     startTime = 0f;
-                    StartCoroutine(Table());
+                    coroutines.Add(() => Table());
                     timing = true;
                 }
                 break;
@@ -118,6 +133,7 @@ public class TutorialController : MonoBehaviour
 
     private IEnumerator Table()
     {
+        coroutineActive = true;
         table = true;
         audio.clip = audioClips[0];
         audio.Play();
@@ -130,6 +146,8 @@ public class TutorialController : MonoBehaviour
         audio.clip = audioClips[2];
         audio.Play();
 
+        yield return new WaitForSeconds(7);
+        coroutineActive = false;
         yield return null;
     }
 
