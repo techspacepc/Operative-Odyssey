@@ -25,13 +25,13 @@ public class TourHandler : MonoBehaviour
 
         //DelegatePortalCollision.OnPortalEntered += ContinueTour;
 
+        tourParent.SetActive(true);
+        museumParent.SetActive(false);
+
         //teleport player
         playerController.enabled = false;
         playerController.transform.localPosition = enterTourPosition;
         playerController.enabled = true;
-
-        //tourParent.SetActive(true);
-        //museumParent.SetActive(false);
     }
 
     private void ContinueTour()
@@ -47,12 +47,13 @@ public class TourHandler : MonoBehaviour
         //foreach (GameObject tour in tourParents)
             //tour.SetActive(false);
 
+        museumParent.SetActive(true);
+        tourParent.SetActive(false);
+
+        //teleport player
         playerController.enabled = false;
         playerController.transform.position = resetPosition;
         playerController.enabled = true;
-
-        //museumParent.SetActive(true);
-        //tourParent.SetActive(false);
 
         currentTour = default;
 
