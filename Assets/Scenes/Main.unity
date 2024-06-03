@@ -1926,8 +1926,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a2d7d89889b4d94fa1f8d6fe49788e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Target: {fileID: 1825262784}
-  m_TargetOffset: {x: 0, y: 0, z: 0}
+  m_Target: {fileID: 7406806920211788715}
+  m_TargetOffset: {x: 5, y: 0, z: 0}
   m_FollowInLocalSpace: 0
   m_ApplyTargetInLocalSpace: 0
   m_MovementSpeed: 6
@@ -2871,8 +2871,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a2d7d89889b4d94fa1f8d6fe49788e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Target: {fileID: 1825262784}
-  m_TargetOffset: {x: 0, y: 0, z: 0}
+  m_Target: {fileID: 7346330340614762441}
+  m_TargetOffset: {x: 5, y: 0, z: 0}
   m_FollowInLocalSpace: 0
   m_ApplyTargetInLocalSpace: 0
   m_MovementSpeed: 6
@@ -5637,8 +5637,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a2d7d89889b4d94fa1f8d6fe49788e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Target: {fileID: 1825262783}
-  m_TargetOffset: {x: 0, y: 0, z: 0}
+  m_Target: {fileID: 6244634466357296776}
+  m_TargetOffset: {x: -5, y: 0, z: 0}
   m_FollowInLocalSpace: 0
   m_ApplyTargetInLocalSpace: 0
   m_MovementSpeed: 6
@@ -5808,8 +5808,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a2d7d89889b4d94fa1f8d6fe49788e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Target: {fileID: 1825262784}
-  m_TargetOffset: {x: 0, y: 0, z: 0}
+  m_Target: {fileID: 889233020539947862}
+  m_TargetOffset: {x: 5, y: 0, z: 0}
   m_FollowInLocalSpace: 0
   m_ApplyTargetInLocalSpace: 0
   m_MovementSpeed: 6
@@ -6510,8 +6510,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a2d7d89889b4d94fa1f8d6fe49788e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Target: {fileID: 1825262784}
-  m_TargetOffset: {x: 0, y: 0, z: 0}
+  m_Target: {fileID: 3036361232711644745}
+  m_TargetOffset: {x: 5, y: 0, z: 0}
   m_FollowInLocalSpace: 0
   m_ApplyTargetInLocalSpace: 0
   m_MovementSpeed: 6
@@ -8576,8 +8576,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a2d7d89889b4d94fa1f8d6fe49788e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Target: {fileID: 1825262783}
-  m_TargetOffset: {x: 0, y: 0, z: 0}
+  m_Target: {fileID: 5713587672282136039}
+  m_TargetOffset: {x: -5, y: 0, z: 0}
   m_FollowInLocalSpace: 0
   m_ApplyTargetInLocalSpace: 0
   m_MovementSpeed: 6
@@ -9634,16 +9634,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
---- !u!4 &1825262783 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1353195394940649157, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
-  m_PrefabInstance: {fileID: 1825262782}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1825262784 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1353195394553188868, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
-  m_PrefabInstance: {fileID: 1825262782}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1937601408
 GameObject:
   m_ObjectHideFlags: 0
