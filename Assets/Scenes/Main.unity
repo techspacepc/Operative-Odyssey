@@ -1927,7 +1927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Target: {fileID: 7406806920211788715}
-  m_TargetOffset: {x: 5, y: 0, z: 0}
+  m_TargetOffset: {x: 1, y: 0, z: 0}
   m_FollowInLocalSpace: 0
   m_ApplyTargetInLocalSpace: 0
   m_MovementSpeed: 6
@@ -2872,7 +2872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Target: {fileID: 7346330340614762441}
-  m_TargetOffset: {x: 5, y: 0, z: 0}
+  m_TargetOffset: {x: 1, y: 0, z: 0}
   m_FollowInLocalSpace: 0
   m_ApplyTargetInLocalSpace: 0
   m_MovementSpeed: 6
@@ -5638,7 +5638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Target: {fileID: 6244634466357296776}
-  m_TargetOffset: {x: -5, y: 0, z: 0}
+  m_TargetOffset: {x: -1, y: 0, z: 0}
   m_FollowInLocalSpace: 0
   m_ApplyTargetInLocalSpace: 0
   m_MovementSpeed: 6
@@ -5809,7 +5809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Target: {fileID: 889233020539947862}
-  m_TargetOffset: {x: 5, y: 0, z: 0}
+  m_TargetOffset: {x: 1, y: 0, z: 0}
   m_FollowInLocalSpace: 0
   m_ApplyTargetInLocalSpace: 0
   m_MovementSpeed: 6
@@ -6511,7 +6511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Target: {fileID: 3036361232711644745}
-  m_TargetOffset: {x: 5, y: 0, z: 0}
+  m_TargetOffset: {x: 1, y: 0, z: 0}
   m_FollowInLocalSpace: 0
   m_ApplyTargetInLocalSpace: 0
   m_MovementSpeed: 6
@@ -8577,7 +8577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Target: {fileID: 5713587672282136039}
-  m_TargetOffset: {x: -5, y: 0, z: 0}
+  m_TargetOffset: {x: -1, y: 0, z: 0}
   m_FollowInLocalSpace: 0
   m_ApplyTargetInLocalSpace: 0
   m_MovementSpeed: 6
