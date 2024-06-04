@@ -6,7 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class BubbleInteract : MonoBehaviour
 {
-    // public static event Action<string> OnBubbleInteract;
+    public static event Action<string> OnBubbleInteract;
     private GameObject[] allBubbles;
     private new Renderer renderer;
 
@@ -52,7 +52,7 @@ public class BubbleInteract : MonoBehaviour
         {
             // Select the bubble
             renderer.material = selectedMaterial;
-            // OnBubbleInteract(name);
+            OnBubbleInteract?.Invoke(name);
             textObject.SetActive(true);
         }
     }
