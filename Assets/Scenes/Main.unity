@@ -9273,7 +9273,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 6e-45, z: 7.36e-42, w: 0}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 1e-45, z: 1.0657e-41, w: 1.3563115e-19}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -11843,7 +11843,7 @@ GameObject:
   - component: {fileID: 9207092470487665035}
   - component: {fileID: 4227256354740108451}
   m_Layer: 0
-  m_Name: Bovenste holle ader
+  m_Name: Superior vena cava
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16460,7 +16460,7 @@ GameObject:
   - component: {fileID: 2204066307241179010}
   - component: {fileID: 2566163650173104691}
   m_Layer: 0
-  m_Name: Longslagader
+  m_Name: Pulmonary artery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18625,7 +18625,7 @@ GameObject:
   - component: {fileID: 713882738913983031}
   - component: {fileID: 2009156023679887469}
   m_Layer: 0
-  m_Name: Longader
+  m_Name: Pulmonary vein
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18777,7 +18777,7 @@ GameObject:
   - component: {fileID: 6482423565957139333}
   - component: {fileID: 2342904981536369341}
   m_Layer: 0
-  m_Name: Rechterboezem
+  m_Name: Right atrium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21120,7 +21120,7 @@ GameObject:
   - component: {fileID: 2308545227114076310}
   - component: {fileID: 9087417690899536690}
   m_Layer: 0
-  m_Name: Linkerboezem
+  m_Name: Left atrium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
