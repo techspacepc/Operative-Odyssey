@@ -10,8 +10,6 @@ public class LineInteractor : MonoBehaviour
     private Vector2 direction;
     private Vector3 defaultSize = Vector3.one / 10;
 
-    private readonly float tolerance = 0.001f;
-
     private void Awake()
     {
         line = GetComponent<EdgeCollider2D>();
@@ -28,7 +26,7 @@ public class LineInteractor : MonoBehaviour
         scalpel = GameObject.FindGameObjectWithTag(Tag.Scalpel);
         boxColliders = transform.GetChild(0).gameObject;
 
-        for (int i = 0; i < line.points.Length; i++)
+        for (int i = 0; i < line.points.Length - 2; i++)
         {
             Vector3 pointA = (Vector3)line.points[i];
             Vector3 pointB = (Vector3)line.points[i + 1];
@@ -40,8 +38,9 @@ public class LineInteractor : MonoBehaviour
             Vector3 center = CalculateCenterBetweenPoints(pointA, pointB);
             box.transform.position = center;
             box.center = center;
-            box.size = CalculateSizeBetweenPoints(pointA, pointB);
-            box.transform.rotation = CalculateRotation(direction);
+            //box.size = CalculateSizeBetweenPoints(pointA, pointB);
+            box.size = defaultSize;
+            //box.transform.rotation = CalculateRotation(direction);
         }
     }
     private Vector3 CalculateCenterBetweenPoints(Vector2 a, Vector2 b)
