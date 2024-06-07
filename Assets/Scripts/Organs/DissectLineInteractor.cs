@@ -13,14 +13,15 @@ public class LineInteractor : MonoBehaviour
 
         for (int i = 0; i < edgePoints.Length - 1; i++)
         {
-            Vector3 pointA = edgePoints[i];
-            Vector3 pointB = edgePoints[i + 1];
+            Vector3 pointA = transform.position + (Vector3)edgePoints[i];
+            Vector3 pointB = transform.position + (Vector3)edgePoints[i + 1];
             Vector3 center = (pointA + pointB) / 2;
 
             BoxCollider box = new GameObject("BoxCollider").AddComponent<BoxCollider>();
             box.transform.parent = this.transform;
             box.transform.localScale = Vector3.one;
-            box.transform.position = center;
+            box.transform.localPosition = center;
+
 
             Vector3 direction = pointB - pointA;
             float distance = direction.magnitude;
