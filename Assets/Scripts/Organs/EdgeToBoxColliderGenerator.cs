@@ -1,3 +1,4 @@
+using Pathing;
 using UnityEngine;
 
 public class EdgeToBoxColliderGenerator : MonoBehaviour
@@ -11,6 +12,7 @@ public class EdgeToBoxColliderGenerator : MonoBehaviour
             DestroyImmediate(transform.GetChild(i).gameObject);
 
         Vector2[] edgePoints = GetComponent<EdgeCollider2D>().points;
+        Material uncutMat = Resources.Load<Material>(Path.UncutMaterial);
 
         for (int i = 0; i < edgePoints.Length - 1; i++)
         {
@@ -18,7 +20,7 @@ public class EdgeToBoxColliderGenerator : MonoBehaviour
             Vector3 pointB = transform.TransformPoint(edgePoints[i + 1]);
             Vector3 center = (pointA + pointB) / 2;
 
-            BoxCollider box = new GameObject($"BoxCollider of point {i} and {i + 1}").AddComponent<BoxCollider>();
+            BoxCollider box = new GameObject($"BoxCollider, LineRenderer; of point {i} and {i + 1}").AddComponent<BoxCollider>();
             box.transform.parent = transform;
             box.transform.position = center;
 
@@ -30,6 +32,19 @@ public class EdgeToBoxColliderGenerator : MonoBehaviour
             box.transform.Rotate(0, 0, angle);
 
             box.isTrigger = true;
+
+
+            Vector3 boxTop = new(0, box.size.y / 2);
+            LineRenderer renderer = box.gameObject.AddComponent<LineRenderer>();
+
+            renderer.startWidth = colliderLeniency.y;
+            renderer.endWidth = colliderLeniency.y;
+
+            renderer.positionCount = 2;
+            renderer.SetPosition(0, pointA + boxTop);
+            renderer.SetPosition(1, pointB + boxTop);
+
+            renderer.material = uncutMat;
         }
     }
 }
