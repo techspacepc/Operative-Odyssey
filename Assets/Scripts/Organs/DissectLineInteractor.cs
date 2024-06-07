@@ -1,78 +1,40 @@
-using Tags;
 using UnityEngine;
 
 public class LineInteractor : MonoBehaviour
 {
-    private EdgeCollider2D line;
-    private GameObject scalpel;
-    private GameObject boxColliders;
+    private EdgeCollider2D edgeCollider;
 
-    private Vector2 direction;
-    private Vector3 defaultSize = Vector3.one / 10;
-
-    private void Awake()
+    [ContextMenu(nameof(Start))]
+    private void Start()
     {
-        line = GetComponent<EdgeCollider2D>();
-        scalpel = GameObject.FindGameObjectWithTag(Tag.Scalpel);
-        boxColliders = transform.GetChild(0).gameObject;
+        edgeCollider = GetComponent<EdgeCollider2D>();
 
-        CreateBoxCollidersOnEdges();
-    }
+        Vector2[] edgePoints = edgeCollider.points;
 
-    [ContextMenu(nameof(CreateBoxCollidersOnEdges))]
-    private void CreateBoxCollidersOnEdges() 
-    {
-        line = GetComponent<EdgeCollider2D>();
-        scalpel = GameObject.FindGameObjectWithTag(Tag.Scalpel);
-        boxColliders = transform.GetChild(0).gameObject;
-
-        for (int i = 0; i < line.points.Length - 2; i++)
+        for (int i = 0; i < edgePoints.Length - 1; i++)
         {
-            Vector3 pointA = (Vector3)line.points[i];
-            Vector3 pointB = (Vector3)line.points[i + 1];
-            direction = pointB - pointA;
-
+            Vector3 pointA = edgePoints[i];
+            Vector3 pointB = edgePoints[i + 1];
+            Vector3 center = (pointA + pointB) / 2;
 
             BoxCollider box = new GameObject("BoxCollider").AddComponent<BoxCollider>();
-            box.transform.parent = boxColliders.transform;
-            Vector3 center = CalculateCenterBetweenPoints(pointA, pointB);
+            box.transform.parent = this.transform;
+            box.transform.localScale = Vector3.one;
             box.transform.position = center;
-            box.center = center;
-            //box.size = CalculateSizeBetweenPoints(pointA, pointB);
-            box.size = defaultSize;
-            //box.transform.rotation = CalculateRotation(direction);
+
+            Vector3 direction = pointB - pointA;
+            float distance = direction.magnitude;
+            box.size = new Vector3(distance, 0.1f, 0.1f);
+
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            box.transform.Rotate(0, 0, angle);
         }
     }
-    private Vector3 CalculateCenterBetweenPoints(Vector2 a, Vector2 b)
+
+    [ContextMenu(nameof(DestroyAllChildren))]
+    private void DestroyAllChildren()
     {
-        Vector2 midpoint = (a + b) / 2;
-
-        Vector3 center = new(midpoint.x, midpoint.y, 0);
-
-        return center;
-    }
-
-    public Vector3 CalculateSizeBetweenPoints(Vector2 a, Vector2 b)
-    {
-        float distance = Vector2.Distance(a, b);
-
-        Vector2 normalizedDirection = direction.normalized;
-
-        Vector3 size = new(
-            Mathf.Abs(normalizedDirection.x) * distance + defaultSize.x * (1 - Mathf.Abs(normalizedDirection.x)),
-            Mathf.Abs(normalizedDirection.y) * distance + defaultSize.y * (1 - Mathf.Abs(normalizedDirection.y)),
-            defaultSize.z
-        );
-
-        return size;
-    }
-
-    private Quaternion CalculateRotation(Vector2 direction)
-    {
-        float angleInRadians = Mathf.Atan2(direction.y, direction.x);
-
-        Quaternion rotation = Quaternion.Euler(0, 0, angleInRadians * Mathf.Rad2Deg);
-
-        return rotation;
+        for (int i = transform.childCount - 1; i >= 0; i--)
+            DestroyImmediate(transform.GetChild(i).gameObject);
     }
 }
