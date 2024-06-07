@@ -1,20 +1,16 @@
 using UnityEngine;
 
-public class LineInteractor : MonoBehaviour
+public class EdgeToBoxColliderGenerator : MonoBehaviour
 {
-    [SerializeField] private float colliderLeniency;
+    [SerializeField] private Vector2 colliderLeniency;
 
-    private EdgeCollider2D edgeCollider;
-
-    [ContextMenu(nameof(Start))]
-    private void Start()
+    [ContextMenu(nameof(GenerateBoxColliders))]
+    private void GenerateBoxColliders()
     {
         for (int i = transform.childCount - 1; i >= 0; i--)
             DestroyImmediate(transform.GetChild(i).gameObject);
 
-        edgeCollider = GetComponent<EdgeCollider2D>();
-
-        Vector2[] edgePoints = edgeCollider.points;
+        Vector2[] edgePoints = GetComponent<EdgeCollider2D>().points;
 
         for (int i = 0; i < edgePoints.Length - 1; i++)
         {
@@ -28,10 +24,12 @@ public class LineInteractor : MonoBehaviour
 
             Vector3 direction = pointB - pointA;
             float distance = direction.magnitude;
-            box.size = new Vector3(distance, colliderLeniency, colliderLeniency);
+            box.size = new Vector3(distance, colliderLeniency.x, colliderLeniency.y);
 
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             box.transform.Rotate(0, 0, angle);
+
+            box.isTrigger = true;
         }
     }
 }
