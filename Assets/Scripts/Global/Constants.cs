@@ -34,6 +34,9 @@ namespace Pathing
     {
         public const string ResourcesFull = "Assets/Resources/TransparentMaterials";
         public const string ResourcesShort = "TransparentMaterials";
+
+        public const string UncutMaterial = "Uncut";
+        public const string Cutmaterial = "Cut";
     }
 }
 
