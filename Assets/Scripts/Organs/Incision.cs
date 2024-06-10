@@ -4,25 +4,25 @@ using UnityEngine;
 public class Incision : MonoBehaviour
 {
     private int childIndex;
-    private LineRenderer lineRenderer;
+    private new Renderer renderer;
 
     private void Reset()
     {
-        lineRenderer.material = IncisionManager.uncutMat;
+        renderer.material = IncisionManager.uncutMat;
     }
 
     private void Awake()
     {
         childIndex = transform.GetSiblingIndex();
-        lineRenderer = GetComponent<LineRenderer>();
+        renderer = GetComponentInChildren<Renderer>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag(Tag.Scalpel)) return;
 
-        IncisionManager.onIncisionMade(childIndex);
-        lineRenderer.material = IncisionManager.cutMat;
+        IncisionManager.onIncisionMade?.Invoke(childIndex);
+        renderer.material = IncisionManager.cutMat;
     }
 
     private void OnEnable()

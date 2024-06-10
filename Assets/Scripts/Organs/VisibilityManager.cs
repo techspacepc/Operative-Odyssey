@@ -1,4 +1,5 @@
 using InteractionLayerManagement;
+using MessageSuppression;
 using Organs;
 using System;
 using System.Collections;
@@ -25,7 +26,8 @@ public class VisibilityManager : MonoBehaviour
     private XRSocketInteractor traySocket;
 
     private const int fadeTime = 2;
-    [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+
+    [SuppressMessage(Suppress.Style.Category, Suppress.Style.CheckId, Justification = Suppress.Style.Justification)]
     private const float _fadeUpdateInterval = 0.05f;
     private readonly WaitForSeconds fadeUpdateInterval = new(_fadeUpdateInterval);
     private const float alphaDecrementor = -1f / (fadeTime / _fadeUpdateInterval);

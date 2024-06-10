@@ -1,5 +1,7 @@
+using MessageSuppression;
 using Pathing;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 
 public class IncisionManager : MonoBehaviour
@@ -11,8 +13,9 @@ public class IncisionManager : MonoBehaviour
     public static Material uncutMat, cutMat;
     private static bool[] incisions;
 
-    private int lastIncisionIndex;
+    private readonly int lastIncisionIndex;
 
+    [SuppressMessage(Suppress.CodeQuality.Category, Suppress.CodeQuality.CheckId, Justification = Suppress.CodeQuality.Justification)]
     private bool ClearAllIncisions(int currentIncision)
     {
         if (Mathf.Abs(lastIncisionIndex - currentIncision) > 1)
@@ -49,15 +52,10 @@ public class IncisionManager : MonoBehaviour
 
     private void Awake()
     {
-        Transform transform = GetComponentInChildren<EdgeCollider2D>().transform;
-
-        incisions = new bool[transform.childCount];
+        incisions = new bool[GetComponentInChildren<EdgeCollider2D>().transform.childCount];
 
         uncutMat = Resources.Load<Material>(Path.UncutMaterial);
         cutMat = Resources.Load<Material>(Path.Cutmaterial);
-
-        foreach (Transform child in transform)
-            child.gameObject.AddComponent<Incision>();
     }
 
     private void OnEnable()
