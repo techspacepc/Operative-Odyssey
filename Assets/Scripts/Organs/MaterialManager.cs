@@ -80,7 +80,7 @@ public class MaterialManager : MonoBehaviour
             if (exception != null) throw exception;
 
             Material copiedMaterial = new(material);
-            AssetDatabase.CreateAsset(copiedMaterial, $"{Path.ResourcesFull}/{copiedMaterial.name}{Const.MaterialTransparent}.asset");
+            AssetDatabase.CreateAsset(copiedMaterial, $"{Path.TransparentLong}/{copiedMaterial.name}{Const.MaterialTransparent}.asset");
         }
         AssetDatabase.SaveAssets();
     }
@@ -88,7 +88,7 @@ public class MaterialManager : MonoBehaviour
 
     private void Awake()
     {
-        Material[] materials = Resources.LoadAll<Material>(Path.ResourcesShort);
+        Material[] materials = Resources.LoadAll<Material>(Path.TransparentShort);
 
         foreach (Material material in materials)
         {

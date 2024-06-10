@@ -32,11 +32,13 @@ namespace Pathing
 {
     public static class Path
     {
-        public const string ResourcesFull = "Assets/Resources/TransparentMaterials";
-        public const string ResourcesShort = "TransparentMaterials";
+        public const string TransparentShort = "TransparentMaterials";
+        public const string TransparentLong = "Assets/Resources/" + TransparentShort;
 
-        public const string UncutMaterial = "Uncut";
-        public const string Cutmaterial = "Cut";
+        public const string CuttingSystem = nameof(CuttingSystem) + "/";
+        public const string UncutMaterial = CuttingSystem + "Uncut";
+        public const string Cutmaterial = CuttingSystem + "Cut";
+        public const string IncisionObject = CuttingSystem + nameof(IncisionObject);
     }
 }
 
