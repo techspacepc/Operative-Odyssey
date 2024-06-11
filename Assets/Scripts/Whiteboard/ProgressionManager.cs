@@ -5,9 +5,29 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class ProgressionManager : MonoBehaviour
 {
+    public ParticleSystem confettiParticleSystem;
+
+    private HashSet<string> interactedBubbles = new();
+    private int totalBubbles;
+
+    private void Start()
+    {
+        totalBubbles = BubbleHandler.bubbleArray.Length;
+    }
+
     private void TheBubbleInteract(string bubbleName)
     {
-        print(bubbleName);
+        if (interactedBubbles.Contains(bubbleName))
+        {
+            return;
+        }
+
+        interactedBubbles.Add(bubbleName);
+
+        if (interactedBubbles.Count >= totalBubbles)
+        {
+            confettiParticleSystem.Play();
+        }
     }
 
     private void OnEnable()
