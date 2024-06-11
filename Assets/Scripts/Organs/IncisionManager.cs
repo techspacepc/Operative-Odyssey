@@ -8,10 +8,10 @@ public class IncisionManager : MonoBehaviour
 {
     [SerializeField] private GameObject cutOrgan;
 
-    public static Action<int> onIncisionMade;
-    public static event Action OnIncisionFailed;
+    public Action<int> onIncisionMade;
+    public event Action onIncisionFailed;
     public static Material uncutMat, cutMat;
-    private static bool[] incisions;
+    private bool[] incisions;
 
     private readonly int lastIncisionIndex;
 
@@ -23,7 +23,7 @@ public class IncisionManager : MonoBehaviour
             for (int i = 0; i < incisions.Length; i++)
                 incisions[i] = false;
 
-            OnIncisionFailed();
+            onIncisionFailed();
 
             return true;
         }

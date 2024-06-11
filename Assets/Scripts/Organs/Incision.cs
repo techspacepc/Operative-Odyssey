@@ -5,6 +5,7 @@ public class Incision : MonoBehaviour
 {
     private int childIndex;
     private new Renderer renderer;
+    private IncisionManager incisionManager;
 
     private void Reset()
     {
@@ -15,23 +16,24 @@ public class Incision : MonoBehaviour
     {
         childIndex = transform.GetSiblingIndex();
         renderer = GetComponentInChildren<Renderer>();
+        incisionManager = GetComponentInParent<IncisionManager>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag(Tag.Scalpel)) return;
 
-        IncisionManager.onIncisionMade?.Invoke(childIndex);
+        incisionManager.onIncisionMade?.Invoke(childIndex);
         renderer.material = IncisionManager.cutMat;
     }
 
     private void OnEnable()
     {
-        IncisionManager.OnIncisionFailed += Reset;
+        incisionManager.onIncisionFailed += Reset;
     }
 
     private void OnDisable()
     {
-        IncisionManager.OnIncisionFailed -= Reset;
+        incisionManager.onIncisionFailed -= Reset;
     }
 }
