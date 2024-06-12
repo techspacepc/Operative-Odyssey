@@ -12,6 +12,7 @@ public class TutorialController : MonoBehaviour
     private float startTime;
     [SerializeField] private AudioSource audio;
     [SerializeField] private AudioClip[] audioClips;
+    [SerializeField] private Animator animator;
     private readonly List<Func<IEnumerator>> coroutines = new();
     private bool coroutineActive = false;
     private bool table = false;
@@ -51,9 +52,11 @@ public class TutorialController : MonoBehaviour
     private IEnumerator OnCut()
     {
         coroutineActive = true;
+        animator.SetBool("Talking", true);
         audio.clip = audioClips[8];
         audio.Play();
         yield return new WaitForSeconds(6);
+        animator.SetBool("Talking", false); ;
         coroutineActive = false;
         yield return null;
     }
@@ -63,7 +66,7 @@ public class TutorialController : MonoBehaviour
         if (timing)
         {
             startTime += Time.deltaTime;
-            if (startTime > 30f)
+            if (startTime > 100f)
             {
                 TakeTooLong();
             }
@@ -87,9 +90,11 @@ public class TutorialController : MonoBehaviour
     private IEnumerator TooLong()
     {
         coroutineActive = true;
+        animator.SetBool("Talking", true);
         audio.clip = audioClips[3];
         audio.Play();
         yield return new WaitForSeconds(9);
+        animator.SetBool("Talking", false);
         coroutineActive = false;
         yield return null;
     }
@@ -103,15 +108,17 @@ public class TutorialController : MonoBehaviour
     private IEnumerator OrganOnTray()
     {
         coroutineActive = true;
-        audio.clip = audioClips[4];
-        audio.Play();
-        yield return new WaitForSeconds(2);
-        audio.clip = audioClips[5];
-        audio.Play();
-        yield return new WaitForSeconds(6);
-        audio.clip = audioClips[6];
+        animator.SetBool("Walking", true);
+        audio.clip = audioClips[15];
         audio.Play();
         yield return new WaitForSeconds(5);
+        animator.SetBool("Walking", false);
+        animator.SetBool("Talking", true);
+        audio.clip = audioClips[16];
+        audio.Play();
+        yield return new WaitForSeconds(3);
+        animator.SetBool("Talking", false);
+
         coroutineActive = false;
         yield return null;
     }
@@ -135,10 +142,14 @@ public class TutorialController : MonoBehaviour
     {
         coroutineActive = true;
         table = true;
+        animator.SetBool("ComeToLife", true);
         audio.clip = audioClips[0];
         audio.Play();
 
-        yield return new WaitForSeconds(7);
+        yield return new WaitForSeconds(3);
+        animator.SetBool("ComeToLife", false);
+        animator.SetBool("Talking", true);
+        yield return new WaitForSeconds(4);
         audio.clip = audioClips[1];
         audio.Play();
 
@@ -147,6 +158,7 @@ public class TutorialController : MonoBehaviour
         audio.Play();
 
         yield return new WaitForSeconds(7);
+        animator.SetBool("Talking", false);
         coroutineActive = false;
         yield return null;
     }
