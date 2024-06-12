@@ -1,3 +1,4 @@
+using Constants;
 using InteractionLayerManagement;
 using MessageSuppression;
 using Organs;
@@ -72,7 +73,9 @@ public class VisibilityManager : MonoBehaviour
 
         foreach (Renderer renderer in renderers)
         {
-            Material material = renderer.material;
+            Material material = renderer.sharedMaterial;
+            if (!material.name.Contains(Const.MaterialTransparent) && material.color.a != 1)
+                material.color = new Color(material.color.r, material.color.g, material.color.b, 1);
 
             materials.Add(material);
             colors.Add(material.color);
@@ -85,7 +88,10 @@ public class VisibilityManager : MonoBehaviour
     }
     private void GetFadingVariables(in Renderer renderer, out float currentAlpha, out Material material, out Color color)
     {
-        material = renderer.material;
+        material = renderer.sharedMaterial;
+        if (!material.name.Contains(Const.MaterialTransparent) && material.color.a != 1)
+            material.color = new Color(material.color.r, material.color.g, material.color.b, 1);
+
         color = material.color;
 
         currentAlpha = color.a;
@@ -135,7 +141,7 @@ public class VisibilityManager : MonoBehaviour
 
             renderer.GetComponent<XRGrabInteractable>().RemoveInteractionLayer(InteractionLayer.Default);
 
-            renderer.material = materials[i] = materialManager.managedMaterials[materialName];
+            renderer.sharedMaterial = materials[i] = materialManager.managedMaterials[materialName];
             materialManager.managedMaterials[materialName] = material;
         }
 
@@ -157,7 +163,7 @@ public class VisibilityManager : MonoBehaviour
             Material previousMaterial = material;
             string materialName = materialManager.GetBaseMaterialName(material.name);
 
-            renderer.material = material = materialManager.managedMaterials[materialName];
+            renderer.sharedMaterial = material = materialManager.managedMaterials[materialName];
             materialManager.managedMaterials[materialName] = previousMaterial;
         }
 
@@ -194,7 +200,7 @@ public class VisibilityManager : MonoBehaviour
 
             renderer.GetComponent<XRGrabInteractable>().AddInteractionLayer(InteractionLayer.Default);
 
-            renderer.material = materialManager.managedMaterials[materialName];
+            renderer.sharedMaterial = materialManager.managedMaterials[materialName];
             materialManager.managedMaterials[materialName] = material;
         }
     }
@@ -211,7 +217,7 @@ public class VisibilityManager : MonoBehaviour
 
         string materialName = materialManager.GetBaseMaterialName(material.name);
 
-        renderer.material = materialManager.managedMaterials[materialName];
+        renderer.sharedMaterial = materialManager.managedMaterials[materialName];
         materialManager.managedMaterials[materialName] = material;
 
         if (renderer.TryGetComponent(out XRGrabInteractable interactable)) interactable.AddInteractionLayer(InteractionLayer.Default);

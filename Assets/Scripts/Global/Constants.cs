@@ -7,6 +7,8 @@ namespace Constants
     {
         public const string MaterialInstance = " (Instance)";
         public const string MaterialTransparent = "Transparent";
+
+        public const string SurfaceType = "RenderType";
     }
 }
 
