@@ -1,53 +1,44 @@
 using Tags;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
-using UnityEngine.XR.Interaction.Toolkit.Filtering;
 
 public class TourHandler : MonoBehaviour
 {
     [SerializeField] private GameObject museumParent;
-    [SerializeField] private GameObject[] tourParents;
+    [SerializeField] private GameObject tourParent;
     private CharacterController playerController;
 
-    private XRSimpleInteractable[] tourExitButtons;
-
     private Vector3 resetPosition = new(1, 0, 1);
-
-    private int currentTour;
+    private Vector3 enterTourPosition = new(26.1000004f,0f,-37.2999992f);
 
     private void StartTour()
     {
         DelegatePortalCollision.OnPortalEntered -= StartTour;
+        DelegatePortalCollision.OnPortalEntered += ExitTour;
 
+        //enable/disable parents
+        tourParent.SetActive(true);
         museumParent.SetActive(false);
-        tourParents[currentTour].SetActive(true);
 
-        DelegatePortalCollision.OnPortalEntered += ContinueTour;
+        //teleport player
+        playerController.enabled = false;
+        playerController.transform.localPosition = enterTourPosition;
+        playerController.enabled = true;
     }
 
-    private void ContinueTour()
+    private void ExitTour()
     {
-        tourParents[currentTour++].SetActive(false);
-        tourParents[currentTour].SetActive(true);
-    }
+        DelegatePortalCollision.OnPortalEntered -= ExitTour;
+        DelegatePortalCollision.OnPortalEntered += StartTour;
 
-    private void ExitTour(SelectEnterEventArgs _)
-    {
-        DelegatePortalCollision.OnPortalEntered -= ContinueTour;
+        //enable/disable parents
+        museumParent.SetActive(true);
+        tourParent.SetActive(false);
 
-        foreach (GameObject tour in tourParents)
-            tour.SetActive(false);
-
+        //teleport player
         playerController.enabled = false;
         playerController.transform.position = resetPosition;
         playerController.enabled = true;
-
-        museumParent.SetActive(true);
-
-        currentTour = default;
-
-        DelegatePortalCollision.OnPortalEntered += StartTour;
     }
 
     private void Awake()
@@ -55,35 +46,15 @@ public class TourHandler : MonoBehaviour
         playerController = GameObject.FindGameObjectWithTag(Tag.Player).GetComponent<CharacterController>();
 
         museumParent.GetComponentInChildren<SphereCollider>().AddComponent<DelegatePortalCollision>();
-
-        tourExitButtons = new XRSimpleInteractable[tourParents.Length];
-
-        for (int i = 0; i < tourParents.Length; i++)
-        {
-            GameObject tour = tourParents[i];
-
-            tourExitButtons[i] = tour.GetComponentInChildren<XRPokeFilter>().GetComponent<XRSimpleInteractable>();
-
-            if (i == tourParents.Length - 1) return;
-
-            tour.GetComponentInChildren<SphereCollider>().AddComponent<DelegatePortalCollision>();
-        }
     }
 
     private void OnEnable()
     {
         DelegatePortalCollision.OnPortalEntered += StartTour;
-
-        foreach (XRSimpleInteractable interactable in tourExitButtons)
-            interactable.selectEntered.AddListener(ExitTour);
     }
 
     private void OnDisable()
     {
         DelegatePortalCollision.OnPortalEntered -= StartTour;
-        DelegatePortalCollision.OnPortalEntered -= ContinueTour;
-
-        foreach (XRSimpleInteractable interactable in tourExitButtons)
-            interactable.selectEntered.RemoveListener(ExitTour);
     }
 }
