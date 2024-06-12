@@ -40,14 +40,6 @@ namespace Organs
                 renderer.enabled = false;
         }
 
-        private void OnOrganCut(GameObject organ)
-        {
-            if (!organ == gameObject) return;
-
-            traySocket.selectEntered.RemoveListener(EnableIncisionRendering);
-            traySocket.selectExited.RemoveListener(DisableIncisionRendering);
-        }
-
         private void GrabGracePeriod() => socketedOrgan.IsGrabbed = false;
         public void OnGrabbed(SelectEnterEventArgs _) => socketedOrgan.IsGrabbed = true;
         public void OnReleased(SelectExitEventArgs args)
@@ -106,8 +98,6 @@ namespace Organs
         {
             base.OnEnable();
 
-            IncisionManager.OnCut += OnOrganCut;
-
             socketedInteractable.selectEntered.AddListener(OnGrabbed);
             socketedInteractable.selectExited.AddListener(OnReleased);
 
@@ -121,8 +111,6 @@ namespace Organs
         protected override void OnDisable()
         {
             base.OnDisable();
-
-            IncisionManager.OnCut -= OnOrganCut;
 
             socketedInteractable.selectEntered.RemoveListener(OnGrabbed);
             socketedInteractable.selectExited.RemoveListener(OnReleased);
