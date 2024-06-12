@@ -5,7 +5,7 @@ using UnityEngine;
 public class BubbleHandler : MonoBehaviour
 {
     private List<GameObject> bubbleList = new List<GameObject>();
-    public static GameObject[] bubbleArray;
+    public GameObject[] bubbleArray;
 
     private void Awake()
     {
@@ -19,10 +19,12 @@ public class BubbleHandler : MonoBehaviour
             GameObject childObject = childTransform.gameObject;
 
             // Add the child object to the list
-            bubbleList.Add(childObject);
 
-            //to array
-            bubbleArray = bubbleList.ToArray();
+            if(childObject.tag == "Bubble"){
+                bubbleList.Add(childObject);
+                //to array
+                bubbleArray = bubbleList.ToArray();
+            }
         }
     }
 }

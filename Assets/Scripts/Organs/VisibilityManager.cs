@@ -75,7 +75,8 @@ public class VisibilityManager : MonoBehaviour
             materials.Add(material);
             colors.Add(material.color);
 
-            renderer.GetComponent<XRGrabInteractable>().enabled = material.color.a <= 1;
+            if (material.color.a <= 1)
+                renderer.GetComponent<XRGrabInteractable>().RemoveInteractionLayer(InteractionLayer.Default);
         }
 
         currentAlpha = colors[0].a; // Uses colors of index 0 since all objects will have the same alpha anyway - they all fade at the same time.

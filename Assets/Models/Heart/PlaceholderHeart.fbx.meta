@@ -1,9 +1,29 @@
 fileFormatVersion: 2
-guid: 2b95cad1b763f384594fc3bfa22ce444
+guid: 300daed75e019434c9e46936a5fa24cc
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: hart_UV_low01_BaseColor.hart_UV_low_defaultMat
+    second: {fileID: 2800000, guid: 06179b4282a189b4d9a568367e4be200, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: hart_UV_low01_Metalness.hart_UV_low_defaultMat
+    second: {fileID: 2800000, guid: d91fd88156f38bb43b2171a791ab823a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: hart_UV_low01_Normal.hart_UV_low_defaultMat
+    second: {fileID: 2800000, guid: 9153c3a9e658233498d05241e45a3f9e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: hart_UV_low01_Roughness.hart_UV_low_defaultMat
+    second: {fileID: 2800000, guid: 3551537e7cb4a7d408921dc840dac02b, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
