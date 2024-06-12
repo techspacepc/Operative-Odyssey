@@ -6229,51 +6229,6 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     m_Variable: {fileID: 0}
---- !u!1 &1189926543
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1189926545}
-  - component: {fileID: 1189926544}
-  m_Layer: 0
-  m_Name: ProgressionManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1189926544
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1189926543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91e9b7321e0bdc84ea155c3033396c5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  confettiParticleSystem: {fileID: 1481357716}
---- !u!4 &1189926545
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1189926543}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1190024430
 GameObject:
   m_ObjectHideFlags: 0
@@ -14206,7 +14161,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 7.83481e-39, y: 8e-45, z: 249.43068, w: 3.0604e-41}
+  m_BoundingSphereOverride: {x: 7.2250795e+28, y: -6.9743956e+31, z: 7.51e-43, w: 1.282e-42}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -17720,6 +17675,67 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!1001 &930702508406363744
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5036064557142343554, guid: 163aa6edd9d18024ea4fe1dc7a31e9d4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036064557142343554, guid: 163aa6edd9d18024ea4fe1dc7a31e9d4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036064557142343554, guid: 163aa6edd9d18024ea4fe1dc7a31e9d4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036064557142343554, guid: 163aa6edd9d18024ea4fe1dc7a31e9d4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036064557142343554, guid: 163aa6edd9d18024ea4fe1dc7a31e9d4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036064557142343554, guid: 163aa6edd9d18024ea4fe1dc7a31e9d4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036064557142343554, guid: 163aa6edd9d18024ea4fe1dc7a31e9d4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036064557142343554, guid: 163aa6edd9d18024ea4fe1dc7a31e9d4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036064557142343554, guid: 163aa6edd9d18024ea4fe1dc7a31e9d4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036064557142343554, guid: 163aa6edd9d18024ea4fe1dc7a31e9d4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5448323909214135858, guid: 163aa6edd9d18024ea4fe1dc7a31e9d4, type: 3}
+      propertyPath: m_Name
+      value: ProgressionManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8935073429399625930, guid: 163aa6edd9d18024ea4fe1dc7a31e9d4, type: 3}
+      propertyPath: confettiParticleSystem
+      value: 
+      objectReference: {fileID: 1481357716}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 163aa6edd9d18024ea4fe1dc7a31e9d4, type: 3}
 --- !u!114 &1011503413384163944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28513,7 +28529,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 231184043}
-  - {fileID: 1189926545}
+  - {fileID: 930702508406363744}
   - {fileID: 3449603735226254009}
   - {fileID: 1825262782}
   - {fileID: 1783572214}
