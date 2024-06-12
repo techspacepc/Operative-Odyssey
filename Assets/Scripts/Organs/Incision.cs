@@ -29,11 +29,11 @@ public class Incision : MonoBehaviour
 
     private void OnEnable()
     {
-        incisionManager.onIncisionFailed += Reset;
+        incisionManager.OnIncisionFailed += Reset;
     }
 
     private void OnDisable()
     {
-        incisionManager.onIncisionFailed -= Reset;
+        incisionManager.OnIncisionFailed -= Reset;
     }
 }
