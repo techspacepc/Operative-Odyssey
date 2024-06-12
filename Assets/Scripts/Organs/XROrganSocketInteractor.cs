@@ -12,6 +12,7 @@ namespace Organs
         public static HashSet<Renderer> idleOrgans = new();
         [field: SerializeField] public OrganType Organ { get; set; }
         public bool IsGrabbed { get; set; } // Will not get used, is just required to be implemented because of the interface, perhaps there should be an IGrabbable Interface?
+        public Renderer FullOrganRenderer { get; set; }
 
         private Renderer organRenderer;
         private Renderer[] incisionRenderers;
@@ -24,17 +25,17 @@ namespace Organs
 
         private void MakeOrganActive(SelectExitEventArgs _) => idleOrgans.Remove(organRenderer);
 
-        private void EnableIncisionRendering(SelectEnterEventArgs _)
+        private void EnableIncisionRendering(SelectEnterEventArgs args)
         {
-            if (idleOrgans.Contains(organRenderer)) return;
+            if (args.interactableObject.transform.gameObject != startingSelectedInteractable.gameObject) return;
 
             foreach (Renderer renderer in incisionRenderers)
                 renderer.enabled = true;
         }
 
-        private void DisableIncisionRendering(SelectExitEventArgs _)
+        private void DisableIncisionRendering(SelectExitEventArgs args)
         {
-            if (idleOrgans.Contains(organRenderer)) return;
+            if (args.interactableObject.transform.gameObject != startingSelectedInteractable.gameObject) return;
 
             foreach (Renderer renderer in incisionRenderers)
                 renderer.enabled = false;
@@ -61,6 +62,7 @@ namespace Organs
 
             socketedInteractable = startingSelectedInteractable.GetComponent<XRGrabInteractable>();
             organRenderer = startingSelectedInteractable.GetComponent<Renderer>();
+            socketedOrgan.FullOrganRenderer = organRenderer;
 
             traySocket = GameObject.FindGameObjectWithTag(Tag.Tray).GetComponent<XRSocketInteractor>();
 

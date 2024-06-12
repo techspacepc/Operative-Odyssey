@@ -1,4 +1,5 @@
 using MessageSuppression;
+using Organs;
 using Pathing;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -8,63 +9,65 @@ public class IncisionManager : MonoBehaviour
 {
     [SerializeField] private GameObject cutOrgan;
 
+    private OutOfBoundsChecker boundsChecker;
+    private IOrgan iOrgan;
+
     public Action<int> onIncisionMade;
-    public event Action onIncisionFailed;
+    public event Action ResetIncisions;
     public static Material uncutMat, cutMat;
     private bool[] incisions;
 
-    private readonly int lastIncisionIndex;
-
     [SuppressMessage(Suppress.CodeQuality.Category, Suppress.CodeQuality.CheckId, Justification = Suppress.CodeQuality.Justification)]
-    private bool ClearAllIncisions(int currentIncision)
+    private void ClearAllIncisions()
     {
-        if (Mathf.Abs(lastIncisionIndex - currentIncision) > 1)
-        {
-            for (int i = 0; i < incisions.Length; i++)
-                incisions[i] = false;
+        for (int i = 0; i < incisions.Length; i++)
+            incisions[i] = false;
 
-            onIncisionFailed();
-
-            return true;
-        }
-        else return false;
+        ResetIncisions();
     }
 
     private void OnIncisionMade(int incisionIndex)
     {
-        // Conditional cutting will be re-implemented later.
-        //if (ClearAllIncisions(incisionIndex)) return; 
-
         incisions[incisionIndex] = true;
-        //lastIncisionIndex = incisionIndex;
 
         foreach (bool incision in incisions)
             if (!incision) return;
+
         Cut();
     }
 
     private void Cut()
     {
-        Instantiate(cutOrgan, transform.position, Quaternion.identity, transform.parent);
+        if (!iOrgan.FullOrganRenderer.enabled) return;
 
-        Destroy(gameObject);
+        GameObject organ = Instantiate(cutOrgan, transform.position, Quaternion.identity, transform.parent);
+
+        foreach (Transform child in organ.transform)
+        {
+            OrganIdentifier identifier = child.gameObject.AddComponent<OrganIdentifier>();
+            identifier.FullOrganRenderer = iOrgan.FullOrganRenderer;
+            identifier.Organ = iOrgan.Organ;
+        }
+
+        boundsChecker.RecallThis(gameObject);
+        iOrgan.FullOrganRenderer.enabled = false;
+
+        ClearAllIncisions();
     }
 
     private void Awake()
     {
+        iOrgan = GetComponent<IOrgan>();
+
         incisions = new bool[GetComponentInChildren<EdgeCollider2D>().transform.childCount];
 
         uncutMat = Resources.Load<Material>(Path.UncutMaterial);
         cutMat = Resources.Load<Material>(Path.Cutmaterial);
     }
 
-    private void OnEnable()
-    {
-        onIncisionMade += OnIncisionMade;
-    }
+    private void Start() => boundsChecker = GetComponent<OutOfBoundsChecker>();
 
-    private void OnDisable()
-    {
-        onIncisionMade -= OnIncisionMade;
-    }
+    private void OnEnable() => onIncisionMade += OnIncisionMade;
+
+    private void OnDisable() => onIncisionMade -= OnIncisionMade;
 }
