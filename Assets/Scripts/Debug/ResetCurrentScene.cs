@@ -1,15 +1,25 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class ResetCurrentScene : MonoBehaviour
 {
-    private XRSimpleInteractable interactable;
+    private ResetKey resetKey;
 
-    public void OnSelectEnter(SelectEnterEventArgs _) => SceneManager.LoadScene(0);
+    public void ResetScene(InputAction.CallbackContext _) => SceneManager.LoadScene(0);
 
-    private void Awake() => interactable = GetComponent<XRSimpleInteractable>();
+    private void Awake() => resetKey = new ResetKey();
 
-    private void OnEnable() => interactable.selectEntered.AddListener(OnSelectEnter);
-    private void OnDisable() => interactable.selectEntered.RemoveListener(OnSelectEnter);
+    private void OnEnable()
+    {
+        resetKey.Reset.Key.started += ResetScene;
+        resetKey.Enable();
+    }
+
+    private void OnDisable()
+    {
+        resetKey.Disable();
+        resetKey.Reset.Key.started -= ResetScene;
+    }
 }
