@@ -3,6 +3,7 @@ using Pathing;
 using System;
 using System.Collections.Generic;
 using Tags;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -80,7 +81,7 @@ public class MaterialManager : MonoBehaviour
             if (exception != null) throw exception;
 
             Material copiedMaterial = new(material);
-            AssetDatabase.CreateAsset(copiedMaterial, $"{Path.ResourcesFull}/{copiedMaterial.name}{Const.MaterialTransparent}.asset");
+            AssetDatabase.CreateAsset(copiedMaterial, $"{Path.TransparentLong}/{copiedMaterial.name}{Const.MaterialTransparent}.asset");
         }
         AssetDatabase.SaveAssets();
     }
@@ -88,12 +89,16 @@ public class MaterialManager : MonoBehaviour
 
     private void Awake()
     {
-        Material[] materials = Resources.LoadAll<Material>(Path.ResourcesShort);
+        Material[] materials = Resources.LoadAll<Material>(Path.TransparentShort);
 
         foreach (Material material in materials)
         {
             MissingReferenceException exception = MissingManagedMaterialReference(material);
             if (exception != null) throw exception;
+
+            if (material.GetTag("RenderType", false) != Const.MaterialTransparent)
+                throw new InvalidImplementationException("THE MATERIAL HAS NOT BEEN ASSIGNED AS TRANSPARENT FOR IT'S SURFACE TYPE. " +
+                    "PLEASE MAKE SURE ALL TRANSPARENT MATERIALS ARE SET TO TRANSPARENT IN THEIR RESPECTIVE SURFACE TYPE.");
 
             managedMaterials[RemoveTransparentNaming(material.name)] = material;
         }

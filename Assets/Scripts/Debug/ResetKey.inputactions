@@ -1,0 +1,34 @@
+{
+    "name": "F1",
+    "maps": [
+        {
+            "name": "Reset",
+            "id": "a3da7ef3-416a-49d5-ab89-f311da1bc8e4",
+            "actions": [
+                {
+                    "name": "Key",
+                    "type": "Button",
+                    "id": "68180270-9498-4f1f-92ea-8277a42baeff",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b137ae9a-88cf-44a1-83aa-45c03874c787",
+                    "path": "<Keyboard>/f1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Key",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

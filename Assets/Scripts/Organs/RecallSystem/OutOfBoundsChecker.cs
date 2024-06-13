@@ -12,7 +12,7 @@ namespace Organs
         private Coroutine recallCountdown;
         private readonly WaitForSeconds countdown = new(3);
 
-        private void RecallThis(GameObject gameObject)
+        public void RecallThis(GameObject gameObject)
         {
             if (gameObject == this.gameObject)
                 recall();
