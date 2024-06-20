@@ -68,8 +68,8 @@ public class IncisionManager : MonoBehaviour
 
     private void Start()
     {
-        boundsChecker = GetComponent<OutOfBoundsChecker>();
-        iOrgan.BoundsChecker = boundsChecker;
+        organBoundsChecker = GetComponent<OutOfBoundsChecker>();
+        iOrgan.BoundsChecker = organBoundsChecker;
     }
 
     private void OnEnable() => onIncisionMade += OnIncisionMade;
