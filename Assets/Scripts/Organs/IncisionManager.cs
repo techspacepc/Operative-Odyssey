@@ -34,6 +34,7 @@ public class IncisionManager : MonoBehaviour
         Cut();
     }
 
+    [ContextMenu(nameof(Cut))]
     private void Cut()
     {
         if (!iOrgan.FullOrganRenderer.enabled) return;
@@ -65,7 +66,11 @@ public class IncisionManager : MonoBehaviour
         cutMat = Resources.Load<Material>(Path.Cutmaterial);
     }
 
-    private void Start() => organBoundsChecker = GetComponent<OutOfBoundsChecker>();
+    private void Start()
+    {
+        organBoundsChecker = GetComponent<OutOfBoundsChecker>();
+        iOrgan.BoundsChecker = organBoundsChecker;
+    }
 
     private void OnEnable() => onIncisionMade += OnIncisionMade;
 

@@ -7,6 +7,7 @@ namespace Organs
         public Renderer FullOrganRenderer { get; set; }
         [field: SerializeField] public OrganType Organ { get; set; }
         public bool IsGrabbed { get; set; }
+        public OutOfBoundsChecker BoundsChecker { get; set; }
     }
 
     public enum OrganType
@@ -20,6 +21,7 @@ namespace Organs
     {
         OrganType Organ { get; set; }
         Renderer FullOrganRenderer { get; set; }
+        OutOfBoundsChecker BoundsChecker { get; set; }
         bool IsGrabbed { get; set; }
     }
 }
