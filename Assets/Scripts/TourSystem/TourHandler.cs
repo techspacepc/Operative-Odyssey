@@ -10,7 +10,7 @@ public class TourHandler : MonoBehaviour
     private CharacterController playerController;
 
     private Vector3 resetPosition = new(1, 0, 1);
-    private Vector3 enterTourPosition = new(26.1000004f,0f,-37.2999992f);
+    private Vector3 enterTourPosition = new(26.1f, 0f, -37.3f);
 
     private void StartTour()
     {
@@ -57,5 +57,6 @@ public class TourHandler : MonoBehaviour
     private void OnDisable()
     {
         DelegatePortalCollision.OnPortalEntered -= StartTour;
+        DelegatePortalCollision.OnPortalEntered -= ExitTour;
     }
 }
