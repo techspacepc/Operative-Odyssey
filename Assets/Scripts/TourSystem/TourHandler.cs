@@ -5,7 +5,8 @@ using UnityEngine;
 public class TourHandler : MonoBehaviour
 {
     [SerializeField] private GameObject museumParent;
-    [SerializeField] private GameObject tourParent;
+    [SerializeField] private GameObject museumLightingParent;
+    [SerializeField] private GameObject tourLightingParent;
     private CharacterController playerController;
 
     private Vector3 resetPosition = new(1, 0, 1);
@@ -17,8 +18,8 @@ public class TourHandler : MonoBehaviour
         DelegatePortalCollision.OnPortalEntered += ExitTour;
 
         //enable/disable parents
-        tourParent.SetActive(true);
-        museumParent.SetActive(false);
+        tourLightingParent.SetActive(true);
+        museumLightingParent.SetActive(false);
 
         //teleport player
         playerController.enabled = false;
@@ -32,8 +33,8 @@ public class TourHandler : MonoBehaviour
         DelegatePortalCollision.OnPortalEntered += StartTour;
 
         //enable/disable parents
-        museumParent.SetActive(true);
-        tourParent.SetActive(false);
+        museumLightingParent.SetActive(true);
+        tourLightingParent.SetActive(false);
 
         //teleport player
         playerController.enabled = false;
