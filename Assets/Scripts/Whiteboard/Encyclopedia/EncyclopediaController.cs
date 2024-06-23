@@ -8,7 +8,9 @@ public class WhiteboardController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI pageOrganText, pageTitleText, pageInfoText, pageNumberingText;
     [SerializeField]
-    private Image pageImageBox, rightArrow, leftArrow;
+    private Image pageImageBox;
+    [SerializeField]
+    private Button rightArrowButton, leftArrowButton;
     [SerializeField]
     private List<OrganInfoData> organList = new();
 
@@ -43,8 +45,8 @@ public class WhiteboardController : MonoBehaviour
         int nextPage = currentPageNumber + 1;
         int prevPage = currentPageNumber - 1;
 
-        rightArrow.color = nextPage >= totalPages ? Color.gray : defaultColor;
-        leftArrow.color = prevPage < 0 ? Color.gray : defaultColor;
+        rightArrowButton.interactable = nextPage < totalPages;
+        leftArrowButton.interactable = prevPage >= 0;
 
         pageNumberingText.text = $"{nextPage} / {organData.pages.Length}"; //next page is used here as otherwise page 0 exists, it works this way I swear - Dirk
 
@@ -72,5 +74,17 @@ public class WhiteboardController : MonoBehaviour
             currentPageNumber--;
             UpdateOrganInfo();
         }
+    }
+
+    private void OnEnable()
+    {
+        leftArrowButton.onClick.AddListener(PageDown);
+        rightArrowButton.onClick.AddListener(PageUp);
+    }
+
+    private void OnDisable()
+    {
+        leftArrowButton.onClick.RemoveListener(PageDown);
+        rightArrowButton.onClick.RemoveListener(PageUp);
     }
 }

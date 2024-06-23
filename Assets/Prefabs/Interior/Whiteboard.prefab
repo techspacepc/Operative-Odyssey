@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: fe00be8ccd678084db6511262ce7db3d, type: 2}
-  m_Color: {r: 0.21960784, g: 0.21960784, b: 0.21960784, a: 1}
+  m_Color: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -580,19 +580,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8945868489444145499}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6193160557222079403}
-        m_TargetAssemblyTypeName: WhiteboardController, Assembly-CSharp
-        m_MethodName: PageUp
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &3575399146436589730
 GameObject:
   m_ObjectHideFlags: 0
@@ -800,7 +788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 1}
+  m_Color: {r: 0.9137255, g: 0.9137255, b: 0.9137255, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -860,19 +848,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3238741502325853909}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6193160557222079403}
-        m_TargetAssemblyTypeName: WhiteboardController, Assembly-CSharp
-        m_MethodName: PageDown
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &4010530765011415011
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,7 +876,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0015, y: 0.0015, z: 0.0015}
+  m_LocalScale: {x: 0.0015000002, y: 0.0015, z: 0.0015000002}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5832478761326898900}
@@ -923,8 +899,8 @@ MonoBehaviour:
   pageInfoText: {fileID: 1475453567093063208}
   pageNumberingText: {fileID: 2283202960008332647}
   pageImageBox: {fileID: 6544202512458293618}
-  rightArrow: {fileID: 8945868489444145499}
-  leftArrow: {fileID: 3238741502325853909}
+  rightArrowButton: {fileID: 4711876612499871435}
+  leftArrowButton: {fileID: 2558390552442959885}
   organList:
   - {fileID: 11400000, guid: ddf833ab89a6b3d41bba2ea8c2dd3d4c, type: 2}
   - {fileID: 11400000, guid: e3bae2f4a06ae114cab7e840258b2e81, type: 2}
@@ -1028,7 +1004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.21698111, g: 0.21698111, b: 0.21698111, a: 1}
+  m_Color: {r: 0.2627451, g: 0.2627451, b: 0.2627451, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
