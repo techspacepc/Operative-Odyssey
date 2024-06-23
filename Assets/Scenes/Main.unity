@@ -96812,6 +96812,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6866516266749645628, guid: f931552b035b5f14a8441a6ae08e6ec3, type: 3}
+      propertyPath: m_text
+      value: Title Organ
+      objectReference: {fileID: 0}
+    - target: {fileID: 6866516266749645628, guid: f931552b035b5f14a8441a6ae08e6ec3, type: 3}
+      propertyPath: m_fontSize
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 6866516266749645628, guid: f931552b035b5f14a8441a6ae08e6ec3, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
