@@ -193,19 +193,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3815589346623789320}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6193160557222079403}
-        m_TargetAssemblyTypeName: WhiteboardController, Assembly-CSharp
-        m_MethodName: OrganSwitch
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &6488940359726247388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -701,19 +689,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9062918696065458151}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6193160557222079403}
-        m_TargetAssemblyTypeName: WhiteboardController, Assembly-CSharp
-        m_MethodName: OrganSwitch
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &8244102904548735503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -901,6 +877,7 @@ MonoBehaviour:
   pageImageBox: {fileID: 6544202512458293618}
   rightArrowButton: {fileID: 4711876612499871435}
   leftArrowButton: {fileID: 2558390552442959885}
+  organBar: {fileID: 5075040062170012067}
   organList:
   - {fileID: 11400000, guid: ddf833ab89a6b3d41bba2ea8c2dd3d4c, type: 2}
   - {fileID: 11400000, guid: e3bae2f4a06ae114cab7e840258b2e81, type: 2}
@@ -1288,19 +1265,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9162578426625172261}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6193160557222079403}
-        m_TargetAssemblyTypeName: WhiteboardController, Assembly-CSharp
-        m_MethodName: OrganSwitch
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1417288359800755842
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,10 +12,18 @@ public class WhiteboardController : MonoBehaviour
     [SerializeField]
     private Button rightArrowButton, leftArrowButton;
     [SerializeField]
+    private Transform organBar;
+    [SerializeField]
     private List<OrganInfoData> organList = new();
+    private Button[] organSwitches;
 
     private OrganInfoData organData;
     private int currentOrganNumber, currentPageNumber;
+
+    private void Awake()
+    {
+        organSwitches = organBar.GetComponentsInChildren<Button>();
+    }
 
     private void Start()
     {
@@ -40,7 +48,6 @@ public class WhiteboardController : MonoBehaviour
         organData = organList[currentOrganNumber];
         OrganInfoData.OrganInfoEntry currentOrganPage = organData.pages[currentPageNumber];
 
-        Color defaultColor = Color.white;
         int totalPages = organData.pages.Length;
         int nextPage = currentPageNumber + 1;
         int prevPage = currentPageNumber - 1;
@@ -58,33 +65,35 @@ public class WhiteboardController : MonoBehaviour
 
     public void PageUp()
     {
-        //check to not go beyond max page of current organ.
-        if ((organData.pages.Length - 1) > currentPageNumber)
-        {
-            currentPageNumber++;
-            UpdateOrganInfo();
-        }
+        currentPageNumber++;
+        UpdateOrganInfo();
     }
 
     public void PageDown()
     {
-        //check to not go beyond min page of current organ.
-        if (currentPageNumber > 0)
-        {
-            currentPageNumber--;
-            UpdateOrganInfo();
-        }
+        currentPageNumber--;
+        UpdateOrganInfo();
     }
 
     private void OnEnable()
     {
         leftArrowButton.onClick.AddListener(PageDown);
         rightArrowButton.onClick.AddListener(PageUp);
+
+        for (int i = 0; i < organSwitches.Length; i++)
+        {
+            int j = i; // To prevent lambda capturing https://unity.huh.how/runtime-exceptions/indexoutofrangeexception
+            Button button = organSwitches[i];
+            button.onClick.AddListener(() => OrganSwitch(j));
+        }
     }
 
     private void OnDisable()
     {
         leftArrowButton.onClick.RemoveListener(PageDown);
         rightArrowButton.onClick.RemoveListener(PageUp);
+
+        foreach (Button button in organSwitches)
+            button.onClick.RemoveAllListeners();
     }
 }
