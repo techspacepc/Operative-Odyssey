@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WhiteboardController : MonoBehaviour
+public class EncyclopediaController : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI pageOrganText, pageTitleText, pageInfoText, pageNumberingText;
