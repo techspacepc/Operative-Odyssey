@@ -105676,7 +105676,7 @@ GameObject:
   - component: {fileID: 9207092470487665035}
   - component: {fileID: 4227256354740108451}
   m_Layer: 0
-  m_Name: Bovenste holle ader
+  m_Name: Superior vena cava
   m_TagString: Bubble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107674,7 +107674,7 @@ GameObject:
   - component: {fileID: 2204066307241179010}
   - component: {fileID: 2566163650173104691}
   m_Layer: 0
-  m_Name: Longslagader
+  m_Name: Pulmonary artery
   m_TagString: Bubble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108340,7 +108340,7 @@ GameObject:
   - component: {fileID: 713882738913983031}
   - component: {fileID: 2009156023679887469}
   m_Layer: 0
-  m_Name: Longader
+  m_Name: Pulmonary Vein
   m_TagString: Bubble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108362,7 +108362,7 @@ GameObject:
   - component: {fileID: 6482423565957139333}
   - component: {fileID: 2342904981536369341}
   m_Layer: 0
-  m_Name: Rechterboezem
+  m_Name: Right Atrium
   m_TagString: Bubble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109586,7 +109586,7 @@ GameObject:
   - component: {fileID: 2308545227114076310}
   - component: {fileID: 9087417690899536690}
   m_Layer: 0
-  m_Name: Linkerboezem
+  m_Name: Left Atrium
   m_TagString: Bubble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
