@@ -28,7 +28,7 @@ public class TrashOrgan : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (!collision.gameObject.TryGetComponent(out IOrgan organ)) return;
-
-        rendererQueue.Enqueue((organ.FullOrganRenderer, collision.gameObject));
+        if (organ.BoundsChecker != null) organ.BoundsChecker.recall();
+        else rendererQueue.Enqueue((organ.FullOrganRenderer, collision.gameObject));
     }
 }

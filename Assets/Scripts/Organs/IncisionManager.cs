@@ -1,15 +1,14 @@
-using MessageSuppression;
 using Organs;
 using Pathing;
 using System;
-using System.Diagnostics.CodeAnalysis;
+using Tags;
 using UnityEngine;
 
 public class IncisionManager : MonoBehaviour
 {
     [SerializeField] private GameObject cutOrgan;
 
-    private OutOfBoundsChecker boundsChecker;
+    private OutOfBoundsChecker organBoundsChecker, scalpelBoundsChecker;
     private IOrgan iOrgan;
 
     public Action<int> onIncisionMade;
@@ -17,7 +16,6 @@ public class IncisionManager : MonoBehaviour
     public static Material uncutMat, cutMat;
     private bool[] incisions;
 
-    [SuppressMessage(Suppress.CodeQuality.Category, Suppress.CodeQuality.CheckId, Justification = Suppress.CodeQuality.Justification)]
     private void ClearAllIncisions()
     {
         for (int i = 0; i < incisions.Length; i++)
@@ -36,6 +34,7 @@ public class IncisionManager : MonoBehaviour
         Cut();
     }
 
+    [ContextMenu(nameof(Cut))]
     private void Cut()
     {
         if (!iOrgan.FullOrganRenderer.enabled) return;
@@ -49,7 +48,8 @@ public class IncisionManager : MonoBehaviour
             identifier.Organ = iOrgan.Organ;
         }
 
-        boundsChecker.RecallThis(gameObject);
+        organBoundsChecker.RecallThis(gameObject);
+        scalpelBoundsChecker.recall();
         iOrgan.FullOrganRenderer.enabled = false;
 
         ClearAllIncisions();
@@ -58,6 +58,7 @@ public class IncisionManager : MonoBehaviour
     private void Awake()
     {
         iOrgan = GetComponent<IOrgan>();
+        scalpelBoundsChecker = GameObject.FindGameObjectWithTag(Tag.Scalpel).GetComponent<OutOfBoundsChecker>();
 
         incisions = new bool[GetComponentInChildren<EdgeCollider2D>().transform.childCount];
 
@@ -65,7 +66,11 @@ public class IncisionManager : MonoBehaviour
         cutMat = Resources.Load<Material>(Path.Cutmaterial);
     }
 
-    private void Start() => boundsChecker = GetComponent<OutOfBoundsChecker>();
+    private void Start()
+    {
+        organBoundsChecker = GetComponent<OutOfBoundsChecker>();
+        iOrgan.BoundsChecker = organBoundsChecker;
+    }
 
     private void OnEnable() => onIncisionMade += OnIncisionMade;
 

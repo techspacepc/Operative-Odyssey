@@ -5,11 +5,12 @@ using UnityEngine;
 public class TourHandler : MonoBehaviour
 {
     [SerializeField] private GameObject museumParent;
-    [SerializeField] private GameObject tourParent;
+    [SerializeField] private GameObject museumLightingParent;
+    [SerializeField] private GameObject tourLightingParent;
     private CharacterController playerController;
 
     private Vector3 resetPosition = new(1, 0, 1);
-    private Vector3 enterTourPosition = new(26.1000004f,0f,-37.2999992f);
+    private Vector3 enterTourPosition = new(26.1f, 0f, -37.3f);
 
     private void StartTour()
     {
@@ -17,8 +18,8 @@ public class TourHandler : MonoBehaviour
         DelegatePortalCollision.OnPortalEntered += ExitTour;
 
         //enable/disable parents
-        tourParent.SetActive(true);
-        museumParent.SetActive(false);
+        tourLightingParent.SetActive(true);
+        museumLightingParent.SetActive(false);
 
         //teleport player
         playerController.enabled = false;
@@ -32,8 +33,8 @@ public class TourHandler : MonoBehaviour
         DelegatePortalCollision.OnPortalEntered += StartTour;
 
         //enable/disable parents
-        museumParent.SetActive(true);
-        tourParent.SetActive(false);
+        museumLightingParent.SetActive(true);
+        tourLightingParent.SetActive(false);
 
         //teleport player
         playerController.enabled = false;
@@ -56,5 +57,6 @@ public class TourHandler : MonoBehaviour
     private void OnDisable()
     {
         DelegatePortalCollision.OnPortalEntered -= StartTour;
+        DelegatePortalCollision.OnPortalEntered -= ExitTour;
     }
 }

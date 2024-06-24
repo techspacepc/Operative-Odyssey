@@ -13,6 +13,7 @@ namespace Organs
         [field: SerializeField] public OrganType Organ { get; set; }
         public bool IsGrabbed { get; set; } // Will not get used, is just required to be implemented because of the interface, perhaps there should be an IGrabbable Interface?
         public Renderer FullOrganRenderer { get; set; }
+        public OutOfBoundsChecker BoundsChecker { get; set; }
 
         private Renderer organRenderer;
         private Renderer[] incisionRenderers;

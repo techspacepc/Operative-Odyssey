@@ -3,17 +3,27 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WhiteboardController : MonoBehaviour
+public class EncyclopediaController : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI pageOrganText, pageTitleText, pageInfoText, pageNumberingText;
     [SerializeField]
-    private Image pageImageBox, rightArrow, leftArrow;
+    private Image pageImageBox;
+    [SerializeField]
+    private Button rightArrowButton, leftArrowButton;
+    [SerializeField]
+    private Transform organBar;
     [SerializeField]
     private List<OrganInfoData> organList = new();
+    private Button[] organSwitches;
 
     private OrganInfoData organData;
     private int currentOrganNumber, currentPageNumber;
+
+    private void Awake()
+    {
+        organSwitches = organBar.GetComponentsInChildren<Button>();
+    }
 
     private void Start()
     {
@@ -38,13 +48,12 @@ public class WhiteboardController : MonoBehaviour
         organData = organList[currentOrganNumber];
         OrganInfoData.OrganInfoEntry currentOrganPage = organData.pages[currentPageNumber];
 
-        Color defaultColor = Color.white;
         int totalPages = organData.pages.Length;
         int nextPage = currentPageNumber + 1;
         int prevPage = currentPageNumber - 1;
 
-        rightArrow.color = nextPage >= totalPages ? Color.gray : defaultColor;
-        leftArrow.color = prevPage < 0 ? Color.gray : defaultColor;
+        rightArrowButton.interactable = nextPage < totalPages;
+        leftArrowButton.interactable = prevPage >= 0;
 
         pageNumberingText.text = $"{nextPage} / {organData.pages.Length}"; //next page is used here as otherwise page 0 exists, it works this way I swear - Dirk
 
@@ -56,21 +65,35 @@ public class WhiteboardController : MonoBehaviour
 
     public void PageUp()
     {
-        //check to not go beyond max page of current organ.
-        if ((organData.pages.Length - 1) > currentPageNumber)
-        {
-            currentPageNumber++;
-            UpdateOrganInfo();
-        }
+        currentPageNumber++;
+        UpdateOrganInfo();
     }
 
     public void PageDown()
     {
-        //check to not go beyond min page of current organ.
-        if (currentPageNumber > 0)
+        currentPageNumber--;
+        UpdateOrganInfo();
+    }
+
+    private void OnEnable()
+    {
+        leftArrowButton.onClick.AddListener(PageDown);
+        rightArrowButton.onClick.AddListener(PageUp);
+
+        for (int i = 0; i < organSwitches.Length; i++)
         {
-            currentPageNumber--;
-            UpdateOrganInfo();
+            int j = i; // To prevent lambda capturing https://unity.huh.how/runtime-exceptions/indexoutofrangeexception
+            Button button = organSwitches[i];
+            button.onClick.AddListener(() => OrganSwitch(j));
         }
+    }
+
+    private void OnDisable()
+    {
+        leftArrowButton.onClick.RemoveListener(PageDown);
+        rightArrowButton.onClick.RemoveListener(PageUp);
+
+        foreach (Button button in organSwitches)
+            button.onClick.RemoveAllListeners();
     }
 }
