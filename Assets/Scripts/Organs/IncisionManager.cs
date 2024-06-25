@@ -58,7 +58,6 @@ public class IncisionManager : MonoBehaviour
     private void Awake()
     {
         iOrgan = GetComponent<IOrgan>();
-        scalpelBoundsChecker = GameObject.FindGameObjectWithTag(Tag.Scalpel).GetComponent<OutOfBoundsChecker>();
 
         incisions = new bool[GetComponentInChildren<EdgeCollider2D>().transform.childCount];
 
@@ -68,6 +67,8 @@ public class IncisionManager : MonoBehaviour
 
     private void Start()
     {
+        scalpelBoundsChecker = GameObject.FindGameObjectWithTag(Tag.Scalpel).GetComponent<OutOfBoundsChecker>();
+
         organBoundsChecker = GetComponent<OutOfBoundsChecker>();
         iOrgan.BoundsChecker = organBoundsChecker;
     }
